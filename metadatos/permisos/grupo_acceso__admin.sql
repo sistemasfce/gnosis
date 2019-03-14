@@ -29,3 +29,30 @@ INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, i
 	'2'  --item
 );
 --- FIN Grupo de desarrollo 0
+
+--- INICIO Grupo de desarrollo 280
+INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
+	'gnosis', --proyecto
+	'admin', --usuario_grupo_acc
+	NULL, --item_id
+	'280000217'  --item
+);
+INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
+	'gnosis', --proyecto
+	'admin', --usuario_grupo_acc
+	NULL, --item_id
+	'280000218'  --item
+);
+INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
+	'gnosis', --proyecto
+	'admin', --usuario_grupo_acc
+	NULL, --item_id
+	'280000221'  --item
+);
+INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
+	'gnosis', --proyecto
+	'admin', --usuario_grupo_acc
+	NULL, --item_id
+	'280000222'  --item
+);
+--- FIN Grupo de desarrollo 280
