@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[280000854]--  DT - participantes 
+--[280000861]--  DT - evt_instituciones 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -9,7 +9,7 @@
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, clase_proyecto, clase, punto_montaje, subclase, subclase_archivo, objeto_categoria_proyecto, objeto_categoria, nombre, titulo, colapsable, descripcion, fuente_datos_proyecto, fuente_datos, solicitud_registrar, solicitud_obj_obs_tipo, solicitud_obj_observacion, parametro_a, parametro_b, parametro_c, parametro_d, parametro_e, parametro_f, usuario, creacion, posicion_botonera) VALUES (
 	'gnosis', --proyecto
-	'280000854', --objeto
+	'280000861', --objeto
 	NULL, --anterior
 	NULL, --identificador
 	NULL, --reflexivo
@@ -20,7 +20,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'DT - participantes', --nombre
+	'DT - evt_instituciones', --nombre
 	NULL, --titulo
 	NULL, --colapsable
 	NULL, --descripcion
@@ -36,7 +36,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --parametro_e
 	NULL, --parametro_f
 	NULL, --usuario
-	'2019-03-14 13:13:54', --creacion
+	'2020-07-08 13:31:19', --creacion
 	NULL  --posicion_botonera
 );
 --- FIN Grupo de desarrollo 280
@@ -46,14 +46,14 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 ------------------------------------------------------------
 INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, min_registros, punto_montaje, ap, ap_clase, ap_archivo, tabla, tabla_ext, alias, modificar_claves, fuente_datos_proyecto, fuente_datos, permite_actualizacion_automatica, esquema, esquema_ext) VALUES (
 	'gnosis', --objeto_proyecto
-	'280000854', --objeto
+	'280000861', --objeto
 	NULL, --max_registros
 	NULL, --min_registros
 	'280000005', --punto_montaje
 	'1', --ap
 	NULL, --ap_clase
 	NULL, --ap_archivo
-	'participantes', --tabla
+	'evt_instituciones', --tabla
 	NULL, --tabla_ext
 	NULL, --alias
 	'0', --modificar_claves
@@ -71,51 +71,23 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001156', --col_id
-	'participante', --columna
+	'280000861', --objeto
+	'280001175', --col_id
+	'institucion', --columna
 	'E', --tipo
 	'1', --pk
-	'participantes_participante_seq', --secuencia
+	'evt_instituciones_institucion_seq', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'1', --no_nulo_db
 	NULL, --externa
-	'participantes'  --tabla
+	'evt_instituciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001157', --col_id
-	'persona', --columna
-	'E', --tipo
-	'0', --pk
-	'', --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'participantes'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001158', --col_id
-	'trabajo', --columna
-	'C', --tipo
-	'0', --pk
-	'', --secuencia
-	'50', --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'participantes'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001159', --col_id
-	'trabajo_descripcion', --columna
+	'280000861', --objeto
+	'280001176', --col_id
+	'descripcion', --columna
 	'C', --tipo
 	'0', --pk
 	'', --secuencia
@@ -123,97 +95,27 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	NULL, --externa
-	'participantes'  --tabla
+	'evt_instituciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001160', --col_id
-	'es_docente', --columna
+	'280000861', --objeto
+	'280001177', --col_id
+	'telefono', --columna
 	'C', --tipo
 	'0', --pk
 	'', --secuencia
-	'1', --largo
+	'20', --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	NULL, --externa
-	'participantes'  --tabla
+	'evt_instituciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001161', --col_id
-	'es_alumno', --columna
-	'C', --tipo
-	'0', --pk
-	'', --secuencia
-	'1', --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'participantes'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001162', --col_id
-	'es_docente_fce', --columna
-	'C', --tipo
-	'0', --pk
-	'', --secuencia
-	'1', --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'participantes'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001163', --col_id
-	'es_alumno_fce', --columna
-	'C', --tipo
-	'0', --pk
-	'', --secuencia
-	'1', --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'participantes'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001164', --col_id
-	'es_docente_no_fce', --columna
-	'C', --tipo
-	'0', --pk
-	'', --secuencia
-	'100', --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'participantes'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001165', --col_id
-	'es_alumno_no_fce', --columna
-	'C', --tipo
-	'0', --pk
-	'', --secuencia
-	'100', --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'participantes'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000854', --objeto
-	'280001166', --col_id
-	'id_gnosis', --columna
+	'280000861', --objeto
+	'280001178', --col_id
+	'localidad', --columna
 	'E', --tipo
 	'0', --pk
 	'', --secuencia
@@ -221,6 +123,6 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	NULL, --externa
-	'participantes'  --tabla
+	'evt_instituciones'  --tabla
 );
 --- FIN Grupo de desarrollo 280

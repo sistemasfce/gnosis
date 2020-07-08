@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[280000218]--  Actividades 
+--[280000223]--  Eventos 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -10,7 +10,7 @@
 INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre, carpeta, nivel_acceso, solicitud_tipo, pagina_tipo_proyecto, pagina_tipo, actividad_buffer_proyecto, actividad_buffer, actividad_patron_proyecto, actividad_patron, nombre, descripcion, punto_montaje, actividad_accion, menu, orden, solicitud_registrar, solicitud_obs_tipo_proyecto, solicitud_obs_tipo, solicitud_observacion, solicitud_registrar_cron, prueba_directorios, zona_proyecto, zona, zona_orden, zona_listar, imagen_recurso_origen, imagen, parametro_a, parametro_b, parametro_c, publico, redirecciona, usuario, exportable, creacion, retrasar_headers) VALUES (
 	NULL, --item_id
 	'gnosis', --proyecto
-	'280000218', --item
+	'280000223', --item
 	NULL, --padre_id
 	'gnosis', --padre_proyecto
 	'1', --padre
@@ -23,7 +23,7 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 	NULL, --actividad_buffer
 	NULL, --actividad_patron_proyecto
 	NULL, --actividad_patron
-	'Actividades', --nombre
+	'Eventos', --nombre
 	NULL, --descripcion
 	'280000005', --punto_montaje
 	NULL, --actividad_accion
@@ -48,7 +48,7 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 	NULL, --redirecciona
 	NULL, --usuario
 	'0', --exportable
-	'2019-03-14 10:50:51', --creacion
+	'2020-07-08 12:34:56', --creacion
 	'0'  --retrasar_headers
 );
 --- FIN Grupo de desarrollo 280
@@ -59,8 +59,8 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 INSERT INTO apex_item_objeto (item_id, proyecto, item, objeto, orden, inicializar) VALUES (
 	NULL, --item_id
 	'gnosis', --proyecto
-	'280000218', --item
-	'280000851', --objeto
+	'280000223', --item
+	'280000858', --objeto
 	'0', --orden
 	NULL  --inicializar
 );
