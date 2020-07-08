@@ -16,8 +16,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	'toba', --clase_proyecto
 	'toba_ci', --clase
 	'280000005', --punto_montaje
-	NULL, --subclase
-	NULL, --subclase_archivo
+	'ci_eventos', --subclase
+	'operaciones/eventos/ci_eventos.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Eventos', --nombre
@@ -225,10 +225,34 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'gnosis', --proyecto
-	'280000749', --dep_id
+	'280000788', --dep_id
 	'280000858', --objeto_consumidor
-	'280000860', --objeto_proveedor
-	'form', --identificador
+	'280000902', --objeto_proveedor
+	'eventos_edicion', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
+	'280000790', --dep_id
+	'280000858', --objeto_consumidor
+	'280000904', --objeto_proveedor
+	'filtro', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
+	'280000793', --dep_id
+	'280000858', --objeto_consumidor
+	'280000907', --objeto_proveedor
+	'relacion', --identificador
 	NULL, --parametros_a
 	NULL, --parametros_b
 	NULL, --parametros_c
@@ -289,15 +313,22 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'gnosis', --proyecto
 	'280000263', --pantalla
 	'280000858', --objeto_ci
-	'0', --orden
+	'1', --orden
 	'280000748'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'gnosis', --proyecto
+	'280000263', --pantalla
+	'280000858', --objeto_ci
+	'0', --orden
+	'280000790'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'gnosis', --proyecto
 	'280000264', --pantalla
 	'280000858', --objeto_ci
 	'0', --orden
-	'280000749'  --dep_id
+	'280000788'  --dep_id
 );
 
 ------------------------------------------------------------

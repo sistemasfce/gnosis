@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[280000872]--  DT - evt_tipos 
+--[280000882]--  fceInstituciones - relacion 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -9,18 +9,18 @@
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, clase_proyecto, clase, punto_montaje, subclase, subclase_archivo, objeto_categoria_proyecto, objeto_categoria, nombre, titulo, colapsable, descripcion, fuente_datos_proyecto, fuente_datos, solicitud_registrar, solicitud_obj_obs_tipo, solicitud_obj_observacion, parametro_a, parametro_b, parametro_c, parametro_d, parametro_e, parametro_f, usuario, creacion, posicion_botonera) VALUES (
 	'gnosis', --proyecto
-	'280000872', --objeto
+	'280000882', --objeto
 	NULL, --anterior
 	NULL, --identificador
 	NULL, --reflexivo
 	'toba', --clase_proyecto
-	'toba_datos_tabla', --clase
+	'toba_datos_relacion', --clase
 	'280000005', --punto_montaje
 	NULL, --subclase
 	NULL, --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'DT - evt_tipos', --nombre
+	'fceInstituciones - relacion', --nombre
 	NULL, --titulo
 	NULL, --colapsable
 	NULL, --descripcion
@@ -36,65 +36,43 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --parametro_e
 	NULL, --parametro_f
 	NULL, --usuario
-	'2020-07-08 14:02:57', --creacion
+	'2020-07-08 14:04:03', --creacion
 	NULL  --posicion_botonera
 );
 --- FIN Grupo de desarrollo 280
 
 ------------------------------------------------------------
--- apex_objeto_db_registros
+-- apex_objeto_datos_rel
 ------------------------------------------------------------
-INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, min_registros, punto_montaje, ap, ap_clase, ap_archivo, tabla, tabla_ext, alias, modificar_claves, fuente_datos_proyecto, fuente_datos, permite_actualizacion_automatica, esquema, esquema_ext) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000872', --objeto
-	NULL, --max_registros
-	NULL, --min_registros
+INSERT INTO apex_objeto_datos_rel (proyecto, objeto, debug, clave, ap, punto_montaje, ap_clase, ap_archivo, sinc_susp_constraints, sinc_orden_automatico, sinc_lock_optimista) VALUES (
+	'gnosis', --proyecto
+	'280000882', --objeto
+	'0', --debug
+	NULL, --clave
+	'2', --ap
 	'280000005', --punto_montaje
-	'1', --ap
 	NULL, --ap_clase
 	NULL, --ap_archivo
-	'evt_tipos', --tabla
-	NULL, --tabla_ext
-	NULL, --alias
-	'0', --modificar_claves
-	'gnosis', --fuente_datos_proyecto
-	'gnosis', --fuente_datos
-	'1', --permite_actualizacion_automatica
-	NULL, --esquema
-	'negocio'  --esquema_ext
+	'0', --sinc_susp_constraints
+	'1', --sinc_orden_automatico
+	'1'  --sinc_lock_optimista
 );
 
 ------------------------------------------------------------
--- apex_objeto_db_registros_col
+-- apex_objeto_dependencias
 ------------------------------------------------------------
 
 --- INICIO Grupo de desarrollo 280
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000872', --objeto
-	'280001187', --col_id
-	'tipo', --columna
-	'E', --tipo
-	'1', --pk
-	'evt_tipos_tipo_seq', --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'1', --no_nulo_db
-	'0', --externa
-	'evt_tipos'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000872', --objeto
-	'280001188', --col_id
-	'descripcion', --columna
-	'C', --tipo
-	'0', --pk
-	'', --secuencia
-	'50', --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	'0', --externa
-	'evt_tipos'  --tabla
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
+	'280000767', --dep_id
+	'280000882', --objeto_consumidor
+	'280000869', --objeto_proveedor
+	'evt_estados', --identificador
+	'1', --parametros_a
+	'1', --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'1'  --orden
 );
 --- FIN Grupo de desarrollo 280
