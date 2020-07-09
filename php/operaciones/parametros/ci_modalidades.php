@@ -1,5 +1,5 @@
 <?php
-class ci_areas_interes extends gnosis_ci
+class ci_modalidades extends gnosis_ci
 {
     //-------------------------------------------------------------------------
     function relacion()
@@ -19,7 +19,7 @@ class ci_areas_interes extends gnosis_ci
 
     function conf__cuadro(gnosis_ei_cuadro $cuadro)
     {
-        $datos = toba::consulta_php('co_parametros')->get_areas_interes();
+        $datos = toba::consulta_php('co_parametros')->get_modalidades();
         $cuadro->set_datos($datos);
     }
 
@@ -34,7 +34,7 @@ class ci_areas_interes extends gnosis_ci
     function conf__form(gnosis_ei_formulario $form)
     {
         if ($this->relacion()->esta_cargada()) {
-            $datos = $this->tabla('dap_areas_interes')->get();            
+            $datos = $this->tabla('evt_modalidades')->get();            
             $form->set_datos($datos);
         }
     }
@@ -42,7 +42,7 @@ class ci_areas_interes extends gnosis_ci
 
     function evt__form__alta($datos)
     {
-        $this->tabla('dap_areas_interes')->set($datos);
+        $this->tabla('evt_modalidades')->set($datos);
         $this->relacion()->sincronizar();
         $this->relacion()->resetear();
     }
@@ -59,7 +59,7 @@ class ci_areas_interes extends gnosis_ci
 
     function evt__form__modificacion($datos)
     {
-        $this->tabla('dap_areas_interes')->set($datos);
+        $this->tabla('evt_modalidades')->set($datos);
         $this->relacion()->sincronizar();
         $this->relacion()->resetear();
     }

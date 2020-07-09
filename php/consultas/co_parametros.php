@@ -69,6 +69,7 @@ class co_parametros
         $sql = "SELECT *
 		FROM dap_areas_interes
 		WHERE $where
+                ORDER BY descripcion
         ";
 	return toba::db()->consultar($sql);
     }
@@ -82,5 +83,25 @@ class co_parametros
         ";
 	return toba::db()->consultar($sql);
     }    
+    
+    function get_modalidades($where=null)
+    {
+	if (!isset($where)) $where = '1=1';
+        $sql = "SELECT *
+		FROM evt_modalidades
+		WHERE $where
+        ";
+	return toba::db()->consultar($sql);
+    }     
+    
+    function get_resoluciones_tipos($where=null)
+    {
+	if (!isset($where)) $where = '1=1';
+        $sql = "SELECT *
+		FROM evt_resoluciones_tipos
+		WHERE $where
+        ";
+	return toba::db()->consultar($sql);
+    }     
 }
     

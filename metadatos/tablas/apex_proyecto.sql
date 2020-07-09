@@ -6,7 +6,7 @@ INSERT INTO apex_proyecto (proyecto, descripcion, descripcion_corta, estilo, con
 	'gnosis', --proyecto
 	'GNOSIS', --descripcion
 	'Gnosis', --descripcion_corta
-	'v2_azul', --estilo
+	'celeste', --estilo
 	'1', --con_frames
 	NULL, --frames_clase
 	NULL, --frames_archivo
