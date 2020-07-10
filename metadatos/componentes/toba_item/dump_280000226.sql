@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[280000226]--  Organizadores 
+--[280000226]--  Responsables de eventos 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -23,12 +23,12 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 	NULL, --actividad_buffer
 	NULL, --actividad_patron_proyecto
 	NULL, --actividad_patron
-	'Organizadores', --nombre
+	'Responsables de eventos', --nombre
 	NULL, --descripcion
 	'280000005', --punto_montaje
 	NULL, --actividad_accion
 	'1', --menu
-	'3', --orden
+	'7', --orden
 	'0', --solicitud_registrar
 	NULL, --solicitud_obs_tipo_proyecto
 	NULL, --solicitud_obs_tipo

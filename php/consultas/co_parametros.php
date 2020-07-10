@@ -102,6 +102,49 @@ class co_parametros
 		WHERE $where
         ";
 	return toba::db()->consultar($sql);
+    }  
+    
+    function get_ciclos_lectivos($where=null)
+    {
+	if (!isset($where)) $where = '1=1';
+        $sql = "SELECT *
+		FROM evt_ciclos_lectivos
+		WHERE $where
+        ";
+	return toba::db()->consultar($sql);
+    }    
+    
+    function get_instituciones_vinculos($where=null)
+    {
+	if (!isset($where)) $where = '1=1';
+        $sql = "SELECT *
+		FROM evt_instituciones_vinculos
+		WHERE $where
+        ";
+	return toba::db()->consultar($sql);
+    }      
+    
+    function get_certificados($where=null)
+    {
+	if (!isset($where)) $where = '1=1';
+        $sql = "SELECT *
+		FROM evt_certificados
+		WHERE $where
+                ORDER BY descripcion
+        ";
+	return toba::db()->consultar($sql);
     }     
+    
+    function get_certificados_firmas($where=null)
+    {
+	if (!isset($where)) $where = '1=1';
+        $sql = "SELECT *,
+                        cargo as persona_desc
+		FROM evt_certificados_firmas
+		WHERE $where AND activo = 'S'
+                ORDER BY descripcion
+        ";
+	return toba::db()->consultar($sql);
+    }      
 }
     
