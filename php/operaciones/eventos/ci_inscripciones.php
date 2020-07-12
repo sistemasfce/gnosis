@@ -1,6 +1,6 @@
 <?php
 
-class ci_eventos extends gnosis_ci
+class ci_inscripciones extends gnosis_ci
 {
     //-------------------------------------------------------------------------
     function relacion()
@@ -52,42 +52,6 @@ class ci_eventos extends gnosis_ci
         unset($this->s__filtro);
     }  
     
-    //-----------------------------------------------------------------------------------
-    //---- Eventos ----------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------
 
-    function evt__agregar()
-    {
-        $this->set_pantalla('edicion');
-    }
-
-    function evt__cancelar()
-    {
-        $this->dep('relacion')->resetear();
-        $this->set_pantalla('seleccion');
-    }
-
-    function evt__eliminar()
-    {
-        try {
-            $this->dep('relacion')->eliminar_todo();
-            $this->set_pantalla('seleccion');
-        } catch (toba_error $e) {
-            toba::notificacion()->agregar('No es posible eliminar el registro.');
-        }
-    }
-
-    function evt__guardar()
-    {
-        try {
-            $this->dep('relacion')->sincronizar();
-            $this->dep('relacion')->resetear();
-        } catch (toba_error $e) {
-            $this->informar_msg('Error al dar de alta el evento - '. $e->get_mensaje());
-            return;
-        }  
-
-        $this->set_pantalla('seleccion');
-    }
 }
 ?>
