@@ -8,6 +8,7 @@ class co_eventos
 	if (!isset($where)) $where = '1=1';
         $sql = "SELECT evt_eventos.*,
                     resolucion || '/' || resolucion_anio || ' ' || evt_resoluciones_tipos.descripcion as resolucion_desc,
+                    substring(evt_eventos.descripcion from 1 for 100) descripcion_corta,
                     evt_tipos.descripcion as tipo_desc,
                     evt_estados.descripcion as estado_desc
 		FROM evt_eventos LEFT OUTER JOIN evt_tipos ON evt_eventos.tipo = evt_tipos.tipo

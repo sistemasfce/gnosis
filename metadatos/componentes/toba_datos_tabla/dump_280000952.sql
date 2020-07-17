@@ -80,7 +80,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --largo
 	NULL, --no_nulo
 	'1', --no_nulo_db
-	NULL, --externa
+	'0', --externa
 	'ins_inscripciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
@@ -94,7 +94,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
-	NULL, --externa
+	'0', --externa
 	'ins_inscripciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
@@ -108,7 +108,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
-	NULL, --externa
+	'0', --externa
 	'ins_inscripciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
@@ -122,7 +122,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
-	NULL, --externa
+	'0', --externa
 	'ins_inscripciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
@@ -136,7 +136,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
-	NULL, --externa
+	'0', --externa
 	'ins_inscripciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
@@ -150,7 +150,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'1', --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
-	NULL, --externa
+	'0', --externa
 	'ins_inscripciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
@@ -164,7 +164,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'1', --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
-	NULL, --externa
+	'0', --externa
 	'ins_inscripciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
@@ -178,7 +178,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'1', --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
-	NULL, --externa
+	'0', --externa
 	'ins_inscripciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
@@ -192,21 +192,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'50', --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
-	NULL, --externa
-	'ins_inscripciones'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'gnosis', --objeto_proyecto
-	'280000952', --objeto
-	'280001269', --col_id
-	'genera_certificado', --columna
-	'C', --tipo
-	'0', --pk
-	'', --secuencia
-	'1', --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
+	'0', --externa
 	'ins_inscripciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
@@ -220,7 +206,198 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'200', --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
-	NULL, --externa
+	'0', --externa
 	'ins_inscripciones'  --tabla
 );
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280001317', --col_id
+	'documento', --columna
+	'C', --tipo
+	'0', --pk
+	NULL, --secuencia
+	'10', --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'1', --externa
+	NULL  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280001318', --col_id
+	'nombre_completo', --columna
+	'C', --tipo
+	'0', --pk
+	NULL, --secuencia
+	'100', --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'1', --externa
+	NULL  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280001319', --col_id
+	'mail', --columna
+	'C', --tipo
+	'0', --pk
+	NULL, --secuencia
+	'50', --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'1', --externa
+	NULL  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280001320', --col_id
+	'estado_desc', --columna
+	'C', --tipo
+	'0', --pk
+	NULL, --secuencia
+	'50', --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'1', --externa
+	NULL  --tabla
+);
 --- FIN Grupo de desarrollo 280
+
+------------------------------------------------------------
+-- apex_objeto_db_registros_ext
+------------------------------------------------------------
+
+--- INICIO Grupo de desarrollo 280
+INSERT INTO apex_objeto_db_registros_ext (objeto_proyecto, objeto, externa_id, tipo, sincro_continua, metodo, clase, include, punto_montaje, sql, dato_estricto, carga_dt, carga_consulta_php, permite_carga_masiva, metodo_masivo) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000031', --externa_id
+	'dao', --tipo
+	'1', --sincro_continua
+	'get_documento', --metodo
+	NULL, --clase
+	NULL, --include
+	'280000005', --punto_montaje
+	NULL, --sql
+	'0', --dato_estricto
+	NULL, --carga_dt
+	'280000037', --carga_consulta_php
+	'0', --permite_carga_masiva
+	NULL  --metodo_masivo
+);
+INSERT INTO apex_objeto_db_registros_ext (objeto_proyecto, objeto, externa_id, tipo, sincro_continua, metodo, clase, include, punto_montaje, sql, dato_estricto, carga_dt, carga_consulta_php, permite_carga_masiva, metodo_masivo) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000032', --externa_id
+	'dao', --tipo
+	'1', --sincro_continua
+	'get_mail', --metodo
+	NULL, --clase
+	NULL, --include
+	'280000005', --punto_montaje
+	NULL, --sql
+	'0', --dato_estricto
+	NULL, --carga_dt
+	'280000037', --carga_consulta_php
+	'0', --permite_carga_masiva
+	NULL  --metodo_masivo
+);
+INSERT INTO apex_objeto_db_registros_ext (objeto_proyecto, objeto, externa_id, tipo, sincro_continua, metodo, clase, include, punto_montaje, sql, dato_estricto, carga_dt, carga_consulta_php, permite_carga_masiva, metodo_masivo) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000033', --externa_id
+	'dao', --tipo
+	'1', --sincro_continua
+	'get_nombre_completo', --metodo
+	NULL, --clase
+	NULL, --include
+	'280000005', --punto_montaje
+	NULL, --sql
+	'0', --dato_estricto
+	NULL, --carga_dt
+	'280000037', --carga_consulta_php
+	'0', --permite_carga_masiva
+	NULL  --metodo_masivo
+);
+INSERT INTO apex_objeto_db_registros_ext (objeto_proyecto, objeto, externa_id, tipo, sincro_continua, metodo, clase, include, punto_montaje, sql, dato_estricto, carga_dt, carga_consulta_php, permite_carga_masiva, metodo_masivo) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000034', --externa_id
+	'sql', --tipo
+	'1', --sincro_continua
+	NULL, --metodo
+	NULL, --clase
+	NULL, --include
+	'280000005', --punto_montaje
+	'SELECT descripcion as estado_desc FROM ins_estados WHERE estado = %estado%;', --sql
+	'0', --dato_estricto
+	NULL, --carga_dt
+	NULL, --carga_consulta_php
+	'0', --permite_carga_masiva
+	NULL  --metodo_masivo
+);
+--- FIN Grupo de desarrollo 280
+
+------------------------------------------------------------
+-- apex_objeto_db_registros_ext_col
+------------------------------------------------------------
+INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000031', --externa_id
+	'280001261', --col_id
+	'0'  --es_resultado
+);
+INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000031', --externa_id
+	'280001317', --col_id
+	'1'  --es_resultado
+);
+INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000032', --externa_id
+	'280001261', --col_id
+	'0'  --es_resultado
+);
+INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000032', --externa_id
+	'280001319', --col_id
+	'1'  --es_resultado
+);
+INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000033', --externa_id
+	'280001261', --col_id
+	'0'  --es_resultado
+);
+INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000033', --externa_id
+	'280001318', --col_id
+	'1'  --es_resultado
+);
+INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000034', --externa_id
+	'280001264', --col_id
+	'0'  --es_resultado
+);
+INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280000034', --externa_id
+	'280001320', --col_id
+	'1'  --es_resultado
+);

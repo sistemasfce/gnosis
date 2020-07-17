@@ -114,8 +114,9 @@ class co_operaciones_generales
        }
    }
 
-    static function get_personas($where) 
+    static function get_listado_personas($where='') 
     {
+
         $sql = "SELECT persona, 
                         COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo
                 FROM tmp_personas 
@@ -124,5 +125,23 @@ class co_operaciones_generales
         return toba::db()->consultar($sql);
     }
 
+
+    static function get_persona($id=null) 
+    {
+        if (! isset($id) || trim($id) == '') {
+            return array();
+        }
+        $id = toba::db()->quote($id);
+        $sql = "SELECT persona, 
+                        COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo
+                FROM tmp_personas 
+                WHERE persona = $id
+                ORDER BY nombre_completo";
+        $result = toba::db()->consultar($sql);
+        if (!empty($result)) {
+            return $result[0]['nombre_completo'];
+       }
+    }    
+    
 }
 ?>

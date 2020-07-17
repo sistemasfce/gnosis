@@ -16,8 +16,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	'toba', --clase_proyecto
 	'toba_ci', --clase
 	'280000005', --punto_montaje
-	NULL, --subclase
-	NULL, --subclase_archivo
+	'ci_inscripciones_edicion', --subclase
+	'operaciones/eventos/ci_inscripciones_edicion.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Inscripciones - inscripciones_edicion', --nombre
@@ -74,10 +74,58 @@ INSERT INTO apex_objeto_mt_me (objeto_mt_me_proyecto, objeto_mt_me, ev_procesar_
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'gnosis', --proyecto
+	'280001033', --dep_id
+	'280000942', --objeto_consumidor
+	'280001131', --objeto_proveedor
+	'cuadro_inscriptos', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
+	'280001030', --dep_id
+	'280000942', --objeto_consumidor
+	'280001128', --objeto_proveedor
+	'cuadro_pre_inscrip', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
 	'280000836', --dep_id
 	'280000942', --objeto_consumidor
 	'280000955', --objeto_proveedor
 	'form_ml_certificados', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
+	'280001031', --dep_id
+	'280000942', --objeto_consumidor
+	'280001129', --objeto_proveedor
+	'form_pre_inscrip', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
+	'280001032', --dep_id
+	'280000942', --objeto_consumidor
+	'280001130', --objeto_proveedor
+	'form_pre_inscrip_imp', --identificador
 	NULL, --parametros_a
 	NULL, --parametros_b
 	NULL, --parametros_c
@@ -172,6 +220,34 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 ------------------------------------------------------------
 -- apex_objetos_pantalla
 ------------------------------------------------------------
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'gnosis', --proyecto
+	'280000289', --pantalla
+	'280000942', --objeto_ci
+	'1', --orden
+	'280001030'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'gnosis', --proyecto
+	'280000289', --pantalla
+	'280000942', --objeto_ci
+	'2', --orden
+	'280001031'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'gnosis', --proyecto
+	'280000289', --pantalla
+	'280000942', --objeto_ci
+	'0', --orden
+	'280001032'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'gnosis', --proyecto
+	'280000290', --pantalla
+	'280000942', --objeto_ci
+	'0', --orden
+	'280001033'  --dep_id
+);
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'gnosis', --proyecto
 	'280000291', --pantalla
