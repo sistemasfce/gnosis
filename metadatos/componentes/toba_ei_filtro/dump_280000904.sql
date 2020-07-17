@@ -134,7 +134,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'gnosis', --objeto_ei_filtro_proyecto
 	'cadena', --tipo
 	'descripcion', --nombre
-	'descripcion', --expresion
+	'evt_eventos.descripcion', --expresion
 	'Descripción', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio
@@ -192,7 +192,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'gnosis', --objeto_ei_filtro_proyecto
 	'opciones', --tipo
 	'tipo', --nombre
-	'tipo', --expresion
+	'evt_eventos.tipo', --expresion
 	'Tipo', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio
@@ -250,7 +250,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'gnosis', --objeto_ei_filtro_proyecto
 	'opciones', --tipo
 	'estado', --nombre
-	'estado', --expresion
+	'evt_eventos.estado', --expresion
 	'Estado', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio

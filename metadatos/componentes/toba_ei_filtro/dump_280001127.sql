@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[280000944]--  Inscripciones - filtro 
+--[280001127]--  Buscar personas - filtro 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -9,7 +9,7 @@
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, clase_proyecto, clase, punto_montaje, subclase, subclase_archivo, objeto_categoria_proyecto, objeto_categoria, nombre, titulo, colapsable, descripcion, fuente_datos_proyecto, fuente_datos, solicitud_registrar, solicitud_obj_obs_tipo, solicitud_obj_observacion, parametro_a, parametro_b, parametro_c, parametro_d, parametro_e, parametro_f, usuario, creacion, posicion_botonera) VALUES (
 	'gnosis', --proyecto
-	'280000944', --objeto
+	'280001127', --objeto
 	NULL, --anterior
 	NULL, --identificador
 	NULL, --reflexivo
@@ -20,7 +20,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'Inscripciones - filtro', --nombre
+	'Buscar personas - filtro', --nombre
 	NULL, --titulo
 	'0', --colapsable
 	NULL, --descripcion
@@ -36,7 +36,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --parametro_e
 	NULL, --parametro_f
 	NULL, --usuario
-	'2020-07-10 17:35:40', --creacion
+	'2020-07-16 23:21:31', --creacion
 	'abajo'  --posicion_botonera
 );
 --- FIN Grupo de desarrollo 280
@@ -48,8 +48,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, etiqueta, maneja_datos, sobre_fila, confirmacion, estilo, imagen_recurso_origen, imagen, en_botonera, ayuda, orden, ci_predep, implicito, defecto, display_datos_cargados, grupo, accion, accion_imphtml_debug, accion_vinculo_carpeta, accion_vinculo_item, accion_vinculo_objeto, accion_vinculo_popup, accion_vinculo_popup_param, accion_vinculo_target, accion_vinculo_celda, accion_vinculo_servicio, es_seleccion_multiple, es_autovinculo) VALUES (
 	'gnosis', --proyecto
-	'280000841', --evento_id
-	'280000944', --objeto
+	'280001037', --evento_id
+	'280001127', --objeto
 	'filtrar', --identificador
 	'&Filtrar', --etiqueta
 	'1', --maneja_datos
@@ -81,8 +81,8 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 );
 INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, etiqueta, maneja_datos, sobre_fila, confirmacion, estilo, imagen_recurso_origen, imagen, en_botonera, ayuda, orden, ci_predep, implicito, defecto, display_datos_cargados, grupo, accion, accion_imphtml_debug, accion_vinculo_carpeta, accion_vinculo_item, accion_vinculo_objeto, accion_vinculo_popup, accion_vinculo_popup_param, accion_vinculo_target, accion_vinculo_celda, accion_vinculo_servicio, es_seleccion_multiple, es_autovinculo) VALUES (
 	'gnosis', --proyecto
-	'280000842', --evento_id
-	'280000944', --objeto
+	'280001038', --evento_id
+	'280001127', --objeto
 	'cancelar', --identificador
 	'&Limpiar', --etiqueta
 	'0', --maneja_datos
@@ -119,7 +119,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 ------------------------------------------------------------
 INSERT INTO apex_objeto_ei_filtro (objeto_ei_filtro_proyecto, objeto_ei_filtro, ancho) VALUES (
 	'gnosis', --objeto_ei_filtro_proyecto
-	'280000944', --objeto_ei_filtro
+	'280001127', --objeto_ei_filtro
 	'100%'  --ancho
 );
 
@@ -129,13 +129,13 @@ INSERT INTO apex_objeto_ei_filtro (objeto_ei_filtro_proyecto, objeto_ei_filtro, 
 
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, objeto_ei_filtro_proyecto, tipo, nombre, expresion, etiqueta, descripcion, obligatorio, inicial, orden, estado_defecto, opciones_es_multiple, opciones_ef, carga_metodo, carga_clase, carga_include, carga_dt, carga_consulta_php, carga_sql, carga_fuente, carga_lista, carga_col_clave, carga_col_desc, carga_permite_no_seteado, carga_no_seteado, carga_no_seteado_ocultar, carga_maestros, edit_tamano, edit_maximo, edit_mascara, edit_unidad, edit_rango, edit_expreg, estilo, popup_item, popup_proyecto, popup_editable, popup_ventana, popup_carga_desc_metodo, popup_carga_desc_clase, popup_carga_desc_include, popup_puede_borrar_estado, punto_montaje, check_valor_si, check_valor_no, check_desc_si, check_desc_no, selec_cant_minima, selec_cant_maxima, selec_utilidades, selec_tamano, selec_ancho, selec_serializar, selec_cant_columnas, placeholder) VALUES (
-	'280000329', --objeto_ei_filtro_col
-	'280000944', --objeto_ei_filtro
+	'280000499', --objeto_ei_filtro_col
+	'280001127', --objeto_ei_filtro
 	'gnosis', --objeto_ei_filtro_proyecto
 	'cadena', --tipo
-	'descripcion', --nombre
-	'evt_eventos.descripcion', --expresion
-	'Descripción', --etiqueta
+	'documento', --nombre
+	'documento', --expresion
+	'N° Documento', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio
 	'1', --inicial
@@ -187,33 +187,33 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	NULL  --placeholder
 );
 INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, objeto_ei_filtro_proyecto, tipo, nombre, expresion, etiqueta, descripcion, obligatorio, inicial, orden, estado_defecto, opciones_es_multiple, opciones_ef, carga_metodo, carga_clase, carga_include, carga_dt, carga_consulta_php, carga_sql, carga_fuente, carga_lista, carga_col_clave, carga_col_desc, carga_permite_no_seteado, carga_no_seteado, carga_no_seteado_ocultar, carga_maestros, edit_tamano, edit_maximo, edit_mascara, edit_unidad, edit_rango, edit_expreg, estilo, popup_item, popup_proyecto, popup_editable, popup_ventana, popup_carga_desc_metodo, popup_carga_desc_clase, popup_carga_desc_include, popup_puede_borrar_estado, punto_montaje, check_valor_si, check_valor_no, check_desc_si, check_desc_no, selec_cant_minima, selec_cant_maxima, selec_utilidades, selec_tamano, selec_ancho, selec_serializar, selec_cant_columnas, placeholder) VALUES (
-	'280000330', --objeto_ei_filtro_col
-	'280000944', --objeto_ei_filtro
+	'280000500', --objeto_ei_filtro_col
+	'280001127', --objeto_ei_filtro
 	'gnosis', --objeto_ei_filtro_proyecto
-	'opciones', --tipo
-	'tipo', --nombre
-	'tevt_eventos.ipo', --expresion
-	'Tipo', --etiqueta
+	'cadena', --tipo
+	'apellido', --nombre
+	'Apellido', --expresion
+	'Apellido', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio
 	'1', --inicial
 	'2', --orden
 	NULL, --estado_defecto
 	'0', --opciones_es_multiple
-	'ef_combo', --opciones_ef
-	'get_tipos_eventos', --carga_metodo
+	NULL, --opciones_ef
+	NULL, --carga_metodo
 	NULL, --carga_clase
 	NULL, --carga_include
 	NULL, --carga_dt
-	'280000001', --carga_consulta_php
+	NULL, --carga_consulta_php
 	NULL, --carga_sql
-	'gnosis', --carga_fuente
+	NULL, --carga_fuente
 	NULL, --carga_lista
-	'tipo', --carga_col_clave
-	'descripcion', --carga_col_desc
-	'1', --carga_permite_no_seteado
-	'-- Seleccione --', --carga_no_seteado
-	'0', --carga_no_seteado_ocultar
+	NULL, --carga_col_clave
+	NULL, --carga_col_desc
+	'0', --carga_permite_no_seteado
+	NULL, --carga_no_seteado
+	NULL, --carga_no_seteado_ocultar
 	NULL, --carga_maestros
 	NULL, --edit_tamano
 	NULL, --edit_maximo
@@ -230,7 +230,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	NULL, --popup_carga_desc_clase
 	NULL, --popup_carga_desc_include
 	NULL, --popup_puede_borrar_estado
-	'280000005', --punto_montaje
+	NULL, --punto_montaje
 	NULL, --check_valor_si
 	NULL, --check_valor_no
 	NULL, --check_desc_si
@@ -245,33 +245,33 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	NULL  --placeholder
 );
 INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, objeto_ei_filtro_proyecto, tipo, nombre, expresion, etiqueta, descripcion, obligatorio, inicial, orden, estado_defecto, opciones_es_multiple, opciones_ef, carga_metodo, carga_clase, carga_include, carga_dt, carga_consulta_php, carga_sql, carga_fuente, carga_lista, carga_col_clave, carga_col_desc, carga_permite_no_seteado, carga_no_seteado, carga_no_seteado_ocultar, carga_maestros, edit_tamano, edit_maximo, edit_mascara, edit_unidad, edit_rango, edit_expreg, estilo, popup_item, popup_proyecto, popup_editable, popup_ventana, popup_carga_desc_metodo, popup_carga_desc_clase, popup_carga_desc_include, popup_puede_borrar_estado, punto_montaje, check_valor_si, check_valor_no, check_desc_si, check_desc_no, selec_cant_minima, selec_cant_maxima, selec_utilidades, selec_tamano, selec_ancho, selec_serializar, selec_cant_columnas, placeholder) VALUES (
-	'280000331', --objeto_ei_filtro_col
-	'280000944', --objeto_ei_filtro
+	'280000501', --objeto_ei_filtro_col
+	'280001127', --objeto_ei_filtro
 	'gnosis', --objeto_ei_filtro_proyecto
-	'opciones', --tipo
-	'estado', --nombre
-	'evt_eventos.estado', --expresion
-	'Estado', --etiqueta
+	'cadena', --tipo
+	'nombres', --nombre
+	'nombres', --expresion
+	'Nombres', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio
 	'1', --inicial
 	'3', --orden
 	NULL, --estado_defecto
 	'0', --opciones_es_multiple
-	'ef_combo', --opciones_ef
-	'get_estados_eventos', --carga_metodo
+	NULL, --opciones_ef
+	NULL, --carga_metodo
 	NULL, --carga_clase
 	NULL, --carga_include
 	NULL, --carga_dt
-	'280000001', --carga_consulta_php
+	NULL, --carga_consulta_php
 	NULL, --carga_sql
-	'gnosis', --carga_fuente
+	NULL, --carga_fuente
 	NULL, --carga_lista
-	'estado', --carga_col_clave
-	'descripcion', --carga_col_desc
-	'1', --carga_permite_no_seteado
-	'-- Seleccione --', --carga_no_seteado
-	'0', --carga_no_seteado_ocultar
+	NULL, --carga_col_clave
+	NULL, --carga_col_desc
+	'0', --carga_permite_no_seteado
+	NULL, --carga_no_seteado
+	NULL, --carga_no_seteado_ocultar
 	NULL, --carga_maestros
 	NULL, --edit_tamano
 	NULL, --edit_maximo
@@ -288,7 +288,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	NULL, --popup_carga_desc_clase
 	NULL, --popup_carga_desc_include
 	NULL, --popup_puede_borrar_estado
-	'280000005', --punto_montaje
+	NULL, --punto_montaje
 	NULL, --check_valor_si
 	NULL, --check_valor_no
 	NULL, --check_desc_si
