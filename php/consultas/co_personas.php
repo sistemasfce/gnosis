@@ -27,4 +27,13 @@ class co_personas
                 FROM tmp_personas WHERE persona = $id";
         return toba::db()->consultar_fila($sql);  
     }     
+    
+    function get_nombre_completo_inscripcion($id)
+    {
+        $sql = "SELECT *,
+                COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo
+                FROM tmp_personas LEFT OUTER JOIN ins_inscripciones ON tmp_personas.persona = ins_inscripciones.persona
+                WHERE ins_inscripciones.inscripcion = $id";
+        return toba::db()->consultar_fila($sql);  
+    }     
 }

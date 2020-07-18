@@ -19,4 +19,22 @@ class co_eventos
         ";
 	return toba::db()->consultar($sql);
     }
+    
+    function get_inscripciones_evento($id)
+    {
+        $sql = "SELECT *
+                FROM ins_inscripciones
+                WHERE evento = $id AND estado = 2
+        ";
+	return toba::db()->consultar($sql);       
+    }
+
+    function get_asistencia_inscripcion($inscripcion, $encuentro)
+    {
+        $sql = "SELECT asistencia
+                FROM ins_asistencias
+                WHERE inscripcion = $inscripcion AND encuentro = $encuentro
+        ";
+	return toba::db()->consultar_fila($sql);       
+    }    
 }

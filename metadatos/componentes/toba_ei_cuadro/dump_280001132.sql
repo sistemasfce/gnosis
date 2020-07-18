@@ -90,9 +90,9 @@ INSERT INTO apex_objeto_cuadro (objeto_cuadro_proyecto, objeto_cuadro, titulo, s
 	NULL, --titulo
 	'Listado de encuentros/clases', --subtitulo
 	NULL, --sql
-	'evento_encuentro', --columnas_clave
+	NULL, --columnas_clave
 	NULL, --columna_descripcion
-	'0', --clave_dbr
+	'1', --clave_dbr
 	NULL, --archivos_callbacks
 	'100%', --ancho
 	'0', --ordenar

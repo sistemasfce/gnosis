@@ -52,6 +52,25 @@ class ci_inscripciones extends gnosis_ci
         unset($this->s__filtro);
     }  
     
+    //-----------------------------------------------------------------------------------
+    //---- Eventos ----------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
 
+    function evt__procesar()
+    {
+        try {
+            $this->dep('relacion')->sincronizar();
+            $this->dep('relacion')->resetear();              
+            $this->set_pantalla('seleccion');
+        }catch (toba_error $e) {
+            toba::notificacion()->agregar('Error al guardar los datos'.$e, 'error');
+        }
+    }
+
+    function evt__cancelar()
+    {
+        $this->dep('relacion')->resetear();
+        $this->set_pantalla('seleccion');
+    } 
 }
 ?>

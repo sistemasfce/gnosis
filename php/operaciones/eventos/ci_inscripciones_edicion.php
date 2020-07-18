@@ -122,7 +122,7 @@ class ci_inscripciones_edicion extends gnosis_ci
 
     function evt__form_pre_inscrip_imp__importar($datos)
     {
-        $preins = toba::consulta_php('co_eventos')->get_inscripciones($datos['evento']);
+        $preins = toba::consulta_php('co_eventos')->get_inscripciones_evento($datos['evento']);
         $curso_actual = $this->relacion()->tabla('evt_eventos')->get();
 
         foreach($preins as $pr) {
@@ -181,7 +181,68 @@ class ci_inscripciones_edicion extends gnosis_ci
     {
         $this->tabla('ins_inscripciones')->procesar_filas($datos);
     }
-	
+
+    //-----------------------------------------------------------------------------------
+    //---- cuadro_encuentros ------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
+
+    function conf__cuadro_encuentros(gnosis_ei_cuadro $cuadro)
+    {
+        $datos = $this->relacion()->tabla('evt_eventos_encuentros')->get_filas();
+        $cuadro->set_datos($datos);
+    }
+    
+    function evt__cuadro_encuentros__seleccion($seleccion)
+    {
+        $this->tabla('evt_eventos_encuentros')->set_cursor($seleccion);
+    }
+ 
+    //-----------------------------------------------------------------------------------
+    //---- form_ml_certificados ---------------------------------------------------------
+    //-----------------------------------------------------------------------------------
+
+    function conf__form_ml_asistencia(gnosis_ei_formulario_ml $form_ml)
+    {    
+        $datos = $this->tabla('ins_asistencias')->get_filas();
+        $ordenados = rs_ordenar_por_columna($datos, 'nombre_completo');
+        $form_ml->set_datos($ordenados);
+    }
+
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    function evt__form_ml_asistencia__modificacion($datos)
+    {
+        $this->tabla('ins_asistencias')->procesar_filas($datos);
+    }
+
+    function evt__form_ml_asistencia__agregar($datos)
+    {
+        if ($this->tabla('evt_eventos_encuentros')->hay_cursor()) {
+            $encuentro =$this->tabla('evt_eventos_encuentros')->get();
+            $ins = $this->tabla('ins_inscripciones')->get_filas();
+            $asistencia = $this->tabla('ins_asistencias')->get_filas();
+            $cargado = 0;
+            foreach($ins as $per) {
+                // me fijo si fue cargado previamente
+                foreach($asistencia as $asis) {
+                    if ($per['inscripcion'] == $asis['inscripcion']) {
+                        $cargado = 1;
+                    }
+                }
+                if ($cargado == 1) {
+                    $cargado = 0;
+                    continue;
+                }
+                // solo cargo a los aceptados
+                if($per['estado'] != 2) {
+                    continue;
+                }
+                $aux['inscripcion'] = $per['inscripcion'];
+                $this->relacion()->tabla('ins_asistencias')->nueva_fila($per);
+            }
+        }
+    }    
+    
     //-------------------------------------------------------------------------
     //-------------------------------------------------------------------------
     function evt__mail_certificado()

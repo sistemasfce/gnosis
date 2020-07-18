@@ -125,4 +125,74 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'0', --externa
 	'ins_asistencias'  --tabla
 );
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000954', --objeto
+	'280001323', --col_id
+	'nombre_completo', --columna
+	'C', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'1', --externa
+	NULL  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000954', --objeto
+	'280001324', --col_id
+	'presente', --columna
+	'C', --tipo
+	'0', --pk
+	'', --secuencia
+	'1', --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'ins_asistencias'  --tabla
+);
 --- FIN Grupo de desarrollo 280
+
+------------------------------------------------------------
+-- apex_objeto_db_registros_ext
+------------------------------------------------------------
+
+--- INICIO Grupo de desarrollo 280
+INSERT INTO apex_objeto_db_registros_ext (objeto_proyecto, objeto, externa_id, tipo, sincro_continua, metodo, clase, include, punto_montaje, sql, dato_estricto, carga_dt, carga_consulta_php, permite_carga_masiva, metodo_masivo) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000954', --objeto
+	'280000036', --externa_id
+	'dao', --tipo
+	'1', --sincro_continua
+	'get_nombre_completo_inscripcion', --metodo
+	NULL, --clase
+	NULL, --include
+	'280000005', --punto_montaje
+	NULL, --sql
+	'0', --dato_estricto
+	NULL, --carga_dt
+	'280000037', --carga_consulta_php
+	'0', --permite_carga_masiva
+	NULL  --metodo_masivo
+);
+--- FIN Grupo de desarrollo 280
+
+------------------------------------------------------------
+-- apex_objeto_db_registros_ext_col
+------------------------------------------------------------
+INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000954', --objeto
+	'280000036', --externa_id
+	'280001306', --col_id
+	'0'  --es_resultado
+);
+INSERT INTO apex_objeto_db_registros_ext_col (objeto_proyecto, objeto, externa_id, col_id, es_resultado) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000954', --objeto
+	'280000036', --externa_id
+	'280001323', --col_id
+	'1'  --es_resultado
+);
