@@ -18,5 +18,13 @@ class co_personas
     {
         $sql = "SELECT mail FROM tmp_personas WHERE persona = $id";
         return toba::db()->consultar_fila($sql);  
-    }    
+    } 
+    
+    function get_datos_persona($id)
+    {
+        $sql = "SELECT *,
+                COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo
+                FROM tmp_personas WHERE persona = $id";
+        return toba::db()->consultar_fila($sql);  
+    }     
 }

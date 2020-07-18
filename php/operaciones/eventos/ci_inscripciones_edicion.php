@@ -77,7 +77,15 @@ class ci_inscripciones_edicion extends gnosis_ci
     function evt__form_pre_inscrip__alta($datos)
     {
         $this->relacion()->tabla('ins_inscripciones')->nueva_fila($datos);
-        #$this->enviar_mail($datos);
+        $curso = $this->tabla('evt_eventos')->get();
+        $mail_destino = toba::consulta_php('co_personas')->get_mail($datos['persona']);
+
+        // si el estado es aceptado mando el mail
+        if($datos['estado'] == 2) {
+            $asunto = $curso['mail_asunto'];
+            $cuerpo_mail = '<p>'.$curso['mail_cuerpo'].'</p>';
+            $this->enviar_mail($mail_destino['mail'], $asunto, $cuerpo_mail);
+        }
     }
     
     //-------------------------------------------------------------------------
@@ -90,21 +98,6 @@ class ci_inscripciones_edicion extends gnosis_ci
     function evt__form_pre_inscrip__modificacion($datos)
     {
         $this->relacion()->tabla('ins_inscripciones')->set($datos);
-        #$this->enviar_mail($datos);
-        $this->evt__form_pre_inscripciones__cancelar();
-    }
-
-    //-------------------------------------------------------------------------
-    function evt__form_pre_inscrip__cancelar()
-    {
-        $this->relacion()->tabla('ins_inscripciones')->resetear_cursor();
-    }    
-    
-    //-----------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------    
-    function enviar_mail($datos)
-    {
         $curso = $this->tabla('evt_eventos')->get();
         $mail_destino = toba::consulta_php('co_personas')->get_mail($datos['persona']);
 
@@ -112,11 +105,188 @@ class ci_inscripciones_edicion extends gnosis_ci
         if($datos['estado'] == 2) {
             $asunto = $curso['mail_asunto'];
             $cuerpo_mail = '<p>'.$curso['mail_cuerpo'].'</p>';
+            $this->enviar_mail($mail_destino['mail'], $asunto, $cuerpo_mail);
+        }
+        $this->evt__form_pre_inscrip__cancelar();
+    }
 
-            $mail = new toba_mail($mail_destino['mail'], $asunto, $cuerpo_mail);
-            $mail->set_html(true);
-            $mail->enviar();
+    //-------------------------------------------------------------------------
+    function evt__form_pre_inscrip__cancelar()
+    {
+        $this->relacion()->tabla('ins_inscripciones')->resetear_cursor();
+    }    
+
+    //-----------------------------------------------------------------------------------
+    //---- form_pre_inscripciones_imp ---------------------------------------------------
+    //-----------------------------------------------------------------------------------
+
+    function evt__form_pre_inscrip_imp__importar($datos)
+    {
+        $preins = toba::consulta_php('co_eventos')->get_inscripciones($datos['evento']);
+        $curso_actual = $this->relacion()->tabla('evt_eventos')->get();
+
+        foreach($preins as $pr) {
+            $pr['evento'] = $curso_actual['evento'];
+            $pr['fecha_inscripcion'] = date('Y-m-d');
+            $pr['estado'] = 1;
+            $pr['inscripcion'] = null;
+            $this->relacion()->tabla('ins_inscripciones')->nueva_fila($pr);
         }
     }
     
+    //-----------------------------------------------------------------------------------
+    //---- cuadro_inscripciones ---------------------------------------------------------
+    //-----------------------------------------------------------------------------------
+
+    function conf__cuadro_inscriptos(gnosis_ei_cuadro $cuadro)
+    {
+        $aux = $this->relacion()->tabla('ins_inscripciones')->get_filas();
+        $datos = array();
+        $indice = 0;
+
+        foreach($aux as $i) {
+            if ($i['estado'] == 2) {
+                $dp = toba::consulta_php('co_personas')->get_datos_persona($i['persona']);
+                $i['localidad'] = $dp['localidad'];
+                $i['mail'] = $dp['mail'];
+                $datos[$indice] = $i;
+                $indice++;
+            }
+        }
+        $ordenados = rs_ordenar_por_columna($datos, 'nombre_completo');
+        $cuadro->set_datos($ordenados);
+    }    
+    
+    //-----------------------------------------------------------------------------------
+    //---- form_ml_certificados ---------------------------------------------------------
+    //-----------------------------------------------------------------------------------
+
+    function conf__form_ml_certificados(gnosis_ei_formulario_ml $form_ml)
+    {    
+        $datos = $this->tabla('ins_inscripciones')->get_filas();
+        $aux = array();
+        foreach ($datos as $d) {
+            if ($d['estado'] == 2) {
+                $d['fecha_inscripcion'] = $this->cambiarFormatoFecha($d['fecha_inscripcion']);
+                $aux[] = $d;
+            }
+        }
+        $ordenados = rs_ordenar_por_columna($aux, 'nombre_completo');
+        $form_ml->set_datos($ordenados);
+    }
+
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    function evt__form_ml_certificados__modificacion($datos)
+    {
+        $this->tabla('ins_inscripciones')->procesar_filas($datos);
+    }
+	
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    function evt__mail_certificado()
+    {
+        $datos = $this->tabla('ins_inscripciones')->get_filas();
+
+        $asunto = "Sistema Gnosis - Certificado";
+        $cuerpo_mail = '<p>'."Ya se encuentra disponible el certificado: '". $datos[0]['descripcion_curso'] ."'.
+                            Para ver el certificado ingrese a GNOSIS y en la opción 'Actividades realizadas',
+                            seleccionando la actividad correspondiente puede descargar el certificado luego de completar 
+                            un cuestionario. 
+                            Gracias por utilizar el sistema GNOSIS - Facultad de Ciencias Económicas UNPSJB 
+                            ".'</p>';
+        foreach($datos as $da) {
+            if ($da['certifico_asistencia'] == 1 || $da['certifico_aprobacion'] == 1) {
+                $this->enviar_mail($da['mail'], $asunto, $cuerpo_mail);
+            }
+        }
+        toba::notificacion()->agregar("Los E-Mails se enviaron correctamente","info");
+    }    
+    
+    //-----------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------    
+    function enviar_mail($mail_destino, $asunto, $cuerpo_mail)
+    {
+        try {
+            $mail = new toba_mail($mail_destino, $asunto, $cuerpo_mail);
+            $mail->set_html(true);
+            #$mail->enviar();
+        } catch(Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+  
+    function cambiarFormatoFecha($fecha)
+    {
+        list($anio,$mes,$dia)=explode("-",$fecha);
+        return $dia."-".$mes."-".$anio;
+    } 
+        
+    //-----------------------------------------------------------------------------------
+    //---- Eventos ----------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
+
+    function vista_impresion($salida)
+    {
+        $datos = $this->tabla('evt_eventos')->get();
+        $salida->mensaje("<DIV ALIGN=center><font size=4><b>Generacion de certificados</b></font></DIV>");
+        $salida->mensaje("<font size=3>Evento: ". $datos['descripcion']."</font>");
+        $salida->mensaje("<font size=3>Dictado entre: ". $this->cambiarFormatoFecha($datos['fecha_inicio']). " y ". $this->cambiarFormatoFecha($datos['fecha_fin'])."</font>");
+        $salida->mensaje("<font size=3>Asistentes: </font>");
+
+        $datosCertificados = $this->tabla('ins_inscripciones')->get_filas();
+
+        $salida->mensaje("<TABLE BORDER=2 CELLSPACING=1 WIDTH=550><TR>");
+        $salida->mensaje("<TD><b>Nombre</b></TD> <TD><b>Fecha de inscripcion</b></TD><TD><b>Asistencia</b></TD><TD><b>Aprobacion</b></TD>");
+        foreach ($datosCertificados as $d) {
+            if ($d['estado'] == 2) {
+                $nombre = $d['nombre_completo'];
+                $asistencia = $d['certifico_asistencia'] ? "SI" : " NO";
+                $aprobacion = $d['certifico_aprobacion'] ? "SI" : " NO";
+                $fecha = $this->cambiarFormatoFecha($d['fecha_inscripcion']);
+                $salida->mensaje("</TR><TR>
+                                <TD>$nombre</TD> 
+                                <TD>$fecha</TD>
+                                <TD>$asistencia</TD>
+                                <TD>$aprobacion</TD>
+                                </TR>");
+            }
+        }
+    }
+
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    function vista_pdf(toba_vista_pdf $salida) 
+    {
+        $datos = $this->tabla('evt_eventos')->get();
+        $inscriptos = $this->tabla('ins_inscripciones')->get_filas();
+        $datosInscriptos = rs_ordenar_por_columna($inscriptos, 'nombre_completo');
+
+        $salida->set_papel_tamanio('a4');
+        $salida->set_papel_orientacion('portrait');
+        $salida->set_nombre_archivo("planilla.pdf");
+        $salida->inicializar();
+
+        $salida->texto('<b>PLANILLA DE INSCRIPTOS</b>', 18, array( 'justification' => 'center'));
+        $salida->texto('<b>Evento: '. $datos['descripcion']. '</b>',18, array('justification' => 'center'));
+        $salida->salto_linea();
+
+        $fecha = $this->cambiarFormatoFecha(date('Y-m-d'));
+        $salida->texto("Fecha: ". $fecha,12);
+
+        $tabla['datos_tabla'] = $datosInscriptos;
+        $tabla['titulo_tabla'] = 'Inscriptos';
+        $tabla['titulos_columnas'] = array('nombre_completo' => 'APELLIDO Y NOMBRES','firma' => 'FIRMA');
+
+        $opciones = array(
+                    'titleFontSize' => 14,
+                    'rowGap' => 10,
+                    'colGap' => 1,
+                    'width' => 500,
+                    'titleFontSize' => 14,
+                );
+
+        $salida->tabla($tabla, true, 12, $opciones);
+    }
 }    

@@ -145,6 +145,16 @@ class co_parametros
                 ORDER BY descripcion
         ";
 	return toba::db()->consultar($sql);
-    }      
+    } 
+    
+    function get_opciones_difusion($where=null)
+    {
+	if (!isset($where)) $where = '1=1';
+        $sql = "SELECT *
+		FROM ins_opciones_difusion
+		WHERE $where
+        ";
+	return toba::db()->consultar($sql);
+    }     
 }
     
