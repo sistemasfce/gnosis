@@ -269,7 +269,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'gnosis', --objeto_proyecto
 	'280000952', --objeto
 	'280001322', --col_id
-	'descripcion_curso', --columna
+	'descripcion_evento', --columna
 	'C', --tipo
 	'0', --pk
 	NULL, --secuencia
@@ -278,6 +278,20 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'0', --no_nulo_db
 	'1', --externa
 	NULL  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000952', --objeto
+	'280001351', --col_id
+	'debe_cuestionario', --columna
+	'C', --tipo
+	'0', --pk
+	'', --secuencia
+	'1', --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'ins_inscripciones'  --tabla
 );
 --- FIN Grupo de desarrollo 280
 
@@ -364,7 +378,7 @@ INSERT INTO apex_objeto_db_registros_ext (objeto_proyecto, objeto, externa_id, t
 	NULL, --clase
 	NULL, --include
 	'280000005', --punto_montaje
-	'SELECT descripcion as descripcion_curso FROM evt_eventos WHERE evento = %evento%', --sql
+	'SELECT descripcion as descripcion_evento FROM evt_eventos WHERE evento = %evento%;', --sql
 	'0', --dato_estricto
 	NULL, --carga_dt
 	NULL, --carga_consulta_php

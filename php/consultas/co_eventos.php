@@ -19,6 +19,23 @@ class co_eventos
         ";
 	return toba::db()->consultar($sql);
     }
+
+    function get_eventos_inscripciones($where=null)
+    {
+	if (!isset($where)) $where = '1=1';
+        $sql = "SELECT evt_eventos.*,
+                    resolucion || '/' || resolucion_anio || ' ' || evt_resoluciones_tipos.descripcion as resolucion_desc,
+                    substring(evt_eventos.descripcion from 1 for 100) descripcion_corta,
+                    evt_tipos.descripcion as tipo_desc,
+                    evt_estados.descripcion as estado_desc
+		FROM evt_eventos LEFT OUTER JOIN evt_tipos ON evt_eventos.tipo = evt_tipos.tipo
+                LEFT OUTER JOIN evt_resoluciones_tipos ON evt_eventos.resolucion_tipo = evt_resoluciones_tipos.resolucion_tipo
+                LEFT OUTER JOIN evt_estados ON evt_eventos.estado = evt_estados.estado
+		WHERE $where AND evt_eventos.estado in (4,5,6)
+                ORDER BY fecha_inicio DESC
+        ";
+	return toba::db()->consultar($sql);
+    }
     
     function get_inscripciones_evento($id)
     {

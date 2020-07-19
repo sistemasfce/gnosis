@@ -45,6 +45,8 @@ class ci_eventos_edicion extends gnosis_ci
                 $datos['proyecto_archivo'] = $nombre. ' - Tam.: '.$tamanio. ' KB';  
             }           
             $form->set_datos($datos);
+        } else {
+            $form->ef('estado')->set_estado(1);
         }
     }
     

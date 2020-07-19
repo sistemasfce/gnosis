@@ -1,5 +1,5 @@
 body {
-	background-color: #afdcdd; /* #2271B3;*/
+	background-color: #a1cbcc; /* #a1cbcc;*/
 }
 
 .encabezado {
@@ -86,7 +86,7 @@ a.nivel-0:hover, a.nivel-0:focus, a.nivel-0.rollover, a.nivel-0.rollover:visited
 .ei-base {
 	padding: 0;
 	margin: 0;	
-	background-color: #c5e1e2;
+	background-color: #a1cbcc;
 	border: 2px solid #333333;
 	border-collapse: collapse;
 	text-align: left;
@@ -238,7 +238,7 @@ a.nivel-0:hover, a.nivel-0:focus, a.nivel-0.rollover, a.nivel-0.rollover:visited
 } 
 
 .ei-ml-fila, .ei-filtro-fila {
-	background-color: #c5e1e2;
+	background-color: #a1cbcc;
 }
 .ei-ml-fila, .ei-filtro-fila {
 	border-top: 1px solid #333333;

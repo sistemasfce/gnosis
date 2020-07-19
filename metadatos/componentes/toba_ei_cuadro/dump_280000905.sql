@@ -134,9 +134,9 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'gnosis', --objeto_cuadro_proyecto
 	'280000905', --objeto_cuadro
 	'280000776', --objeto_cuadro_col
-	'nombre', --clave
+	'nombre_completo', --clave
 	'1', --orden
-	'Nombre', --titulo
+	'Apellido y nombres', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
 	NULL, --ancho

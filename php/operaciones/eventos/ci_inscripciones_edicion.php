@@ -15,6 +15,28 @@ class ci_inscripciones_edicion extends gnosis_ci
     }
 
     //-----------------------------------------------------------------------------------
+    //---- Configuraciones --------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
+
+    function conf__inscripciones()
+    {    
+        $datos = $this->tabla('evt_eventos')->get();
+        if ($datos['estado'] == 4) {
+                $this->pantalla()->tab('certificados')->ocultar();
+                $this->pantalla()->tab('asistencia')->ocultar();
+        }        
+    }
+ 
+    function conf__pre_inscripciones()
+    {    
+        $datos = $this->tabla('evt_eventos')->get();
+        if ($datos['estado'] == 4) {
+                $this->pantalla()->tab('certificados')->ocultar();
+                $this->pantalla()->tab('asistencia')->ocultar();
+        }        
+    }
+    
+    //-----------------------------------------------------------------------------------
     //---- cuadro -----------------------------------------------------------------------
     //-----------------------------------------------------------------------------------
 
