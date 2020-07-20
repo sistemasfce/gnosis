@@ -82,7 +82,7 @@ class ci_personas extends gnosis_ci
             toba::notificacion()->agregar('No es posible eliminar el registro.');
         }
     }
-/*
+
     function evt__guardar()
     {
         if ($this->s__modifica) {
@@ -92,8 +92,8 @@ class ci_personas extends gnosis_ci
             try {
                 $this->dep('relacion')->sincronizar();
                 $this->dep('relacion')->resetear();
-                $this->dep('relacion_toba')->sincronizar();
-                $this->dep('relacion_toba')->resetear();
+                #$this->dep('relacion_toba')->sincronizar();
+                #$this->dep('relacion_toba')->resetear();
             } catch (toba_error $e) {
                 $this->informar_msg('Error al dar de alta usuario - '. $e->get_mensaje());
                 return;
@@ -102,7 +102,7 @@ class ci_personas extends gnosis_ci
 
         $this->set_pantalla('seleccion');
     }
-*/
+
     //-----------------------------------------------------------------------------------
     //---- form -------------------------------------------------------------------------
     //-----------------------------------------------------------------------------------

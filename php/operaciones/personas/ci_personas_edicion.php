@@ -38,6 +38,7 @@ class ci_personas_edicion extends gnosis_ci
     //-----------------------------------------------------------------------------------
     function evt__cuadro_eventos_as__cuestionario($seleccion)
     {
+        toba::memoria()->set_dato('fila',$seleccion);
         $this->relacion()->tabla('ins_inscripciones')->set_cursor($seleccion);
         $this->pantalla('personas_eventos_as')->agregar_dep('cuestionario');
     }   

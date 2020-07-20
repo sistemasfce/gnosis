@@ -16,8 +16,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	'toba', --clase_proyecto
 	'toba_ci', --clase
 	'280000005', --punto_montaje
-	NULL, --subclase
-	NULL, --subclase_archivo
+	'ci_firmas', --subclase
+	'operaciones/certificados/ci_firmas.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Firmas de certificados', --nombre
@@ -90,6 +90,18 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	'280000921', --objeto_consumidor
 	'280000950', --objeto_proveedor
 	'form', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
+	'280001050', --dep_id
+	'280000921', --objeto_consumidor
+	'280001145', --objeto_proveedor
+	'relacion', --identificador
 	NULL, --parametros_a
 	NULL, --parametros_b
 	NULL, --parametros_c
