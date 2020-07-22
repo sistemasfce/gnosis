@@ -53,18 +53,20 @@ class ci_eventos_edicion extends gnosis_ci
     function evt__form__modificacion($datos)
     {
         if (isset($datos['resolucion_archivo']) or isset($datos['resolucion_path'])) {
-            $nombre_archivo = $datos['archivo']['name'];
+            $nombre_archivo = $datos['resolucion_archivo']['name'];
             $nombre_nuevo = 'resol_'.$datos['resolucion_anio'].'_'.$datos['resolucion'].'.pdf';   
             $destino = '/home/fce/informes_gn/'.$nombre_nuevo;
             // Mover los archivos subidos al servidor del directorio temporal PHP a uno propio.
-            move_uploaded_file($datos['resolucion_archivo']['tmp_name'], $destino);            
+            move_uploaded_file($datos['resolucion_archivo']['tmp_name'], $destino);   
+            $datos['proyecto_path'] = $destino;   
         }
         if (isset($datos['proyecto_archivo']) or isset($datos['proyecto_path'])) {
-            $nombre_archivo = $datos['archivo']['name'];
-            $nombre_nuevo = 'resol_'.$datos['resolucion_anio'].'_'.$datos['resolucion'].'.pdf';   
+            $nombre_archivo = $datos['proyecto_archivo']['name'];
+            $nombre_nuevo = 'proy_'.$datos['resolucion_anio'].'_'.$datos['resolucion'].'.pdf';   
             $destino = '/home/fce/informes_gn/'.$nombre_nuevo;
             // Mover los archivos subidos al servidor del directorio temporal PHP a uno propio.
-            move_uploaded_file($datos['proyecto_archivo']['tmp_name'], $destino);            
+            move_uploaded_file($datos['proyecto_archivo']['tmp_name'], $destino); 
+            $datos['proyecto_path'] = $destino;   
         }        
         $this->tabla('evt_eventos')->set($datos);
     }

@@ -87,7 +87,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'gnosis', --objeto_proyecto
 	'280000910', --objeto
 	'280001198', --col_id
-	'descripcion', --columna
+	'titulo', --columna
 	'C', --tipo
 	'0', --pk
 	'', --secuencia
@@ -353,11 +353,11 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'gnosis', --objeto_proyecto
 	'280000910', --objeto
 	'280001218', --col_id
-	'observaciones', --columna
+	'descripcion', --columna
 	'C', --tipo
 	'0', --pk
 	'', --secuencia
-	'2000', --largo
+	'5000', --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa

@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[280000922]--  Consultar eventos 
+--[280001152]--  Registro 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -9,18 +9,18 @@
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, clase_proyecto, clase, punto_montaje, subclase, subclase_archivo, objeto_categoria_proyecto, objeto_categoria, nombre, titulo, colapsable, descripcion, fuente_datos_proyecto, fuente_datos, solicitud_registrar, solicitud_obj_obs_tipo, solicitud_obj_observacion, parametro_a, parametro_b, parametro_c, parametro_d, parametro_e, parametro_f, usuario, creacion, posicion_botonera) VALUES (
 	'gnosis', --proyecto
-	'280000922', --objeto
+	'280001152', --objeto
 	NULL, --anterior
 	NULL, --identificador
 	NULL, --reflexivo
 	'toba', --clase_proyecto
 	'toba_ci', --clase
 	'280000005', --punto_montaje
-	'ci_consultar_eventos', --subclase
-	'operaciones/reportes/ci_consultar_eventos.php', --subclase_archivo
+	NULL, --subclase
+	NULL, --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'Consultar eventos', --nombre
+	'Registro', --nombre
 	NULL, --titulo
 	'0', --colapsable
 	NULL, --descripcion
@@ -36,7 +36,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --parametro_e
 	NULL, --parametro_f
 	NULL, --usuario
-	'2020-07-09 22:24:26', --creacion
+	'2020-07-22 11:09:58', --creacion
 	'abajo'  --posicion_botonera
 );
 --- FIN Grupo de desarrollo 280
@@ -46,7 +46,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 ------------------------------------------------------------
 INSERT INTO apex_objeto_mt_me (objeto_mt_me_proyecto, objeto_mt_me, ev_procesar_etiq, ev_cancelar_etiq, ancho, alto, posicion_botonera, tipo_navegacion, botonera_barra_item, con_toc, incremental, debug_eventos, activacion_procesar, activacion_cancelar, ev_procesar, ev_cancelar, objetos, post_procesar, metodo_despachador, metodo_opciones) VALUES (
 	'gnosis', --objeto_mt_me_proyecto
-	'280000922', --objeto_mt_me
+	'280001152', --objeto_mt_me
 	NULL, --ev_procesar_etiq
 	NULL, --ev_cancelar_etiq
 	'90%', --ancho
@@ -74,10 +74,10 @@ INSERT INTO apex_objeto_mt_me (objeto_mt_me_proyecto, objeto_mt_me, ev_procesar_
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'gnosis', --proyecto
-	'280001069', --dep_id
-	'280000922', --objeto_consumidor
-	'280001156', --objeto_proveedor
-	'cuadro', --identificador
+	'280001064', --dep_id
+	'280001152', --objeto_consumidor
+	'280001153', --objeto_proveedor
+	'form', --identificador
 	NULL, --parametros_a
 	NULL, --parametros_b
 	NULL, --parametros_c
@@ -86,10 +86,10 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'gnosis', --proyecto
-	'280001068', --dep_id
-	'280000922', --objeto_consumidor
-	'280001155', --objeto_proveedor
-	'filtro', --identificador
+	'280001066', --dep_id
+	'280001152', --objeto_consumidor
+	'280001154', --objeto_proveedor
+	'relacion', --identificador
 	NULL, --parametros_a
 	NULL, --parametros_b
 	NULL, --parametros_c
@@ -105,8 +105,8 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, identificador, orden, etiqueta, descripcion, tip, imagen_recurso_origen, imagen, objetos, eventos, subclase, subclase_archivo, template, template_impresion, punto_montaje) VALUES (
 	'gnosis', --objeto_ci_proyecto
-	'280000922', --objeto_ci
-	'280000283', --pantalla
+	'280001152', --objeto_ci
+	'280000367', --pantalla
 	'pant_inicial', --identificador
 	NULL, --orden
 	'Pantalla Inicial', --etiqueta
@@ -129,15 +129,8 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 ------------------------------------------------------------
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'gnosis', --proyecto
-	'280000283', --pantalla
-	'280000922', --objeto_ci
+	'280000367', --pantalla
+	'280001152', --objeto_ci
 	'0', --orden
-	'280001068'  --dep_id
-);
-INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
-	'gnosis', --proyecto
-	'280000283', --pantalla
-	'280000922', --objeto_ci
-	'1', --orden
-	'280001069'  --dep_id
+	'280001064'  --dep_id
 );

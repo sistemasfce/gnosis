@@ -1,5 +1,7 @@
 <?php
 
+require_once(toba::proyecto()->get_path_php().'/comunes.php');
+
 class ci_inscripciones_edicion extends gnosis_ci
 {
     //-------------------------------------------------------------------------
@@ -21,7 +23,7 @@ class ci_inscripciones_edicion extends gnosis_ci
     function conf__inscripciones()
     {    
         $datos = $this->tabla('evt_eventos')->get();
-        if ($datos['estado'] == 4) {
+        if ($datos['estado'] == comunes::evt_en_insc) {
                 $this->pantalla()->tab('certificados')->ocultar();
                 $this->pantalla()->tab('asistencia')->ocultar();
         }        
@@ -30,7 +32,7 @@ class ci_inscripciones_edicion extends gnosis_ci
     function conf__pre_inscripciones()
     {    
         $datos = $this->tabla('evt_eventos')->get();
-        if ($datos['estado'] == 4) {
+        if ($datos['estado'] == comunes::evt_en_insc) {
                 $this->pantalla()->tab('certificados')->ocultar();
                 $this->pantalla()->tab('asistencia')->ocultar();
         }        
@@ -77,7 +79,7 @@ class ci_inscripciones_edicion extends gnosis_ci
             $persona = $this->relacion()->tabla('ins_inscripciones')->get();
             $persona['apex_ei_analisis_fila'] = 'M';
             $persona['fecha_inscripcion'] = date('Y-m-d');
-            $persona['estado'] = 2;
+            $persona['estado'] = comunes::ins_aceptado;
             $aux[] = $persona;
             $this->relacion()->tabla('ins_inscripciones')->resetear_cursor();
         }
@@ -103,7 +105,7 @@ class ci_inscripciones_edicion extends gnosis_ci
         $mail_destino = toba::consulta_php('co_personas')->get_mail($datos['persona']);
 
         // si el estado es aceptado mando el mail
-        if($datos['estado'] == 2) {
+        if($datos['estado'] == comunes::ins_aceptado) {
             $asunto = $curso['mail_asunto'];
             $cuerpo_mail = '<p>'.$curso['mail_cuerpo'].'</p>';
             $this->enviar_mail($mail_destino['mail'], $asunto, $cuerpo_mail);
@@ -124,7 +126,7 @@ class ci_inscripciones_edicion extends gnosis_ci
         $mail_destino = toba::consulta_php('co_personas')->get_mail($datos['persona']);
 
         // si el estado es aceptado mando el mail
-        if($datos['estado'] == 2) {
+        if($datos['estado'] == comunes::ins_aceptado) {
             $asunto = $curso['mail_asunto'];
             $cuerpo_mail = '<p>'.$curso['mail_cuerpo'].'</p>';
             $this->enviar_mail($mail_destino['mail'], $asunto, $cuerpo_mail);
@@ -150,7 +152,7 @@ class ci_inscripciones_edicion extends gnosis_ci
         foreach($preins as $pr) {
             $pr['evento'] = $curso_actual['evento'];
             $pr['fecha_inscripcion'] = date('Y-m-d');
-            $pr['estado'] = 1;
+            $pr['estado'] = comunes::ins_pendiente;
             $pr['inscripcion'] = null;
             $this->relacion()->tabla('ins_inscripciones')->nueva_fila($pr);
         }
@@ -167,7 +169,7 @@ class ci_inscripciones_edicion extends gnosis_ci
         $indice = 0;
 
         foreach($aux as $i) {
-            if ($i['estado'] == 2) {
+            if ($i['estado'] == comunes::ins_aceptado) {
                 $dp = toba::consulta_php('co_personas')->get_datos_persona($i['persona']);
                 $i['localidad'] = $dp['localidad'];
                 $i['mail'] = $dp['mail'];
@@ -188,7 +190,7 @@ class ci_inscripciones_edicion extends gnosis_ci
         $datos = $this->tabla('ins_inscripciones')->get_filas();
         $aux = array();
         foreach ($datos as $d) {
-            if ($d['estado'] == 2) {
+            if ($d['estado'] == comunes::ins_aceptado) {
                 $d['fecha_inscripcion'] = $this->cambiarFormatoFecha($d['fecha_inscripcion']);
                 $aux[] = $d;
             }
@@ -256,7 +258,7 @@ class ci_inscripciones_edicion extends gnosis_ci
                     continue;
                 }
                 // solo cargo a los aceptados
-                if($per['estado'] != 2) {
+                if($per['estado'] != comunes::ins_aceptado) {
                     continue;
                 }
                 $aux['inscripcion'] = $per['inscripcion'];
@@ -272,14 +274,14 @@ class ci_inscripciones_edicion extends gnosis_ci
         $datos = $this->tabla('ins_inscripciones')->get_filas();
 
         $asunto = "Sistema Gnosis - Certificado";
-        $cuerpo_mail = '<p>'."Ya se encuentra disponible el certificado: '". $datos[0]['descripcion_curso'] ."'.
-                            Para ver el certificado ingrese a GNOSIS y en la opción 'Actividades realizadas',
-                            seleccionando la actividad correspondiente puede descargar el certificado luego de completar 
+        $cuerpo_mail = '<p>'."Ya se encuentra disponible el certificado: '". $datos[0]['titulo_evento'] ."'.
+                            Para ver el certificado ingrese a GNOSIS y en la opción 'Eventos realizados',
+                            seleccionando el evento correspondiente puede descargar el certificado luego de completar 
                             un cuestionario. 
                             Gracias por utilizar el sistema GNOSIS - Facultad de Ciencias Económicas UNPSJB 
                             ".'</p>';
         foreach($datos as $da) {
-            if ($da['certifico_asistencia'] == 1 || $da['certifico_aprobacion'] == 1) {
+            if ($da['certifico_asistencia'] == 'S' || $da['certifico_aprobacion'] == 'S') {
                 $this->enviar_mail($da['mail'], $asunto, $cuerpo_mail);
             }
         }
@@ -314,7 +316,7 @@ class ci_inscripciones_edicion extends gnosis_ci
     {
         $datos = $this->tabla('evt_eventos')->get();
         $salida->mensaje("<DIV ALIGN=center><font size=4><b>Generacion de certificados</b></font></DIV>");
-        $salida->mensaje("<font size=3>Evento: ". $datos['descripcion']."</font>");
+        $salida->mensaje("<font size=3>Evento: ". $datos['titulo']."</font>");
         $salida->mensaje("<font size=3>Dictado entre: ". $this->cambiarFormatoFecha($datos['fecha_inicio']). " y ". $this->cambiarFormatoFecha($datos['fecha_fin'])."</font>");
         $salida->mensaje("<font size=3>Asistentes: </font>");
 
@@ -323,7 +325,7 @@ class ci_inscripciones_edicion extends gnosis_ci
         $salida->mensaje("<TABLE BORDER=2 CELLSPACING=1 WIDTH=550><TR>");
         $salida->mensaje("<TD><b>Nombre</b></TD> <TD><b>Fecha de inscripcion</b></TD><TD><b>Asistencia</b></TD><TD><b>Aprobacion</b></TD>");
         foreach ($datosCertificados as $d) {
-            if ($d['estado'] == 2) {
+            if ($d['estado'] == comunes::ins_aceptado) {
                 $nombre = $d['nombre_completo'];
                 $asistencia = $d['certifico_asistencia'] ? "SI" : " NO";
                 $aprobacion = $d['certifico_aprobacion'] ? "SI" : " NO";

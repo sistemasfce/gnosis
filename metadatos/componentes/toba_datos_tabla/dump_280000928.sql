@@ -143,7 +143,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'gnosis', --objeto_proyecto
 	'280000928', --objeto
 	'280001348', --col_id
-	'descripcion_evento', --columna
+	'titulo_evento', --columna
 	'C', --tipo
 	'0', --pk
 	NULL, --secuencia
@@ -232,7 +232,7 @@ INSERT INTO apex_objeto_db_registros_ext (objeto_proyecto, objeto, externa_id, t
 	NULL, --clase
 	NULL, --include
 	'280000005', --punto_montaje
-	'SELECT descripcion as descripcion_evento FROM evt_eventos WHERE evento = %evento%;', --sql
+	'SELECT titulo as titulo_evento FROM evt_eventos WHERE evento = %evento%;', --sql
 	'0', --dato_estricto
 	NULL, --carga_dt
 	NULL, --carga_consulta_php

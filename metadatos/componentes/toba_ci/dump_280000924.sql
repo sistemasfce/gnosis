@@ -68,6 +68,25 @@ INSERT INTO apex_objeto_mt_me (objeto_mt_me_proyecto, objeto_mt_me, ev_procesar_
 );
 
 ------------------------------------------------------------
+-- apex_objeto_dependencias
+------------------------------------------------------------
+
+--- INICIO Grupo de desarrollo 280
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
+	'280001072', --dep_id
+	'280000924', --objeto_consumidor
+	'280001159', --objeto_proveedor
+	'filtro', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+--- FIN Grupo de desarrollo 280
+
+------------------------------------------------------------
 -- apex_objeto_ci_pantalla
 ------------------------------------------------------------
 
@@ -92,3 +111,14 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	NULL  --punto_montaje
 );
 --- FIN Grupo de desarrollo 280
+
+------------------------------------------------------------
+-- apex_objetos_pantalla
+------------------------------------------------------------
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'gnosis', --proyecto
+	'280000285', --pantalla
+	'280000924', --objeto_ci
+	'0', --orden
+	'280001072'  --dep_id
+);

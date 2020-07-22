@@ -8,6 +8,12 @@ class co_personas
         return toba::db()->consultar_fila($sql);  
     }
     
+    function get_id($doc)
+    {
+        $sql = "SELECT persona FROM tmp_personas WHERE documento = $doc";
+        return toba::db()->consultar_fila($sql);  
+    }    
+    
     function get_nombre_completo($id)
     {
         $sql = "SELECT COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo FROM tmp_personas WHERE persona = $id";
