@@ -79,11 +79,33 @@ INSERT INTO apex_objeto_cuadro (objeto_cuadro_proyecto, objeto_cuadro, titulo, s
 	NULL, --desplegable_activo
 	'1', --scroll
 	'600px', --scroll_alto
-	NULL, --cc_modo
-	NULL, --cc_modo_anidado_colap
+	't', --cc_modo
+	'0', --cc_modo_anidado_colap
 	NULL, --cc_modo_anidado_totcol
 	NULL  --cc_modo_anidado_totcua
 );
+
+------------------------------------------------------------
+-- apex_objeto_cuadro_cc
+------------------------------------------------------------
+
+--- INICIO Grupo de desarrollo 280
+INSERT INTO apex_objeto_cuadro_cc (objeto_cuadro_proyecto, objeto_cuadro, objeto_cuadro_cc, identificador, descripcion, orden, columnas_id, columnas_descripcion, pie_contar_filas, pie_mostrar_titular, pie_mostrar_titulos, imp_paginar, modo_inicio_colapsado) VALUES (
+	'gnosis', --objeto_cuadro_proyecto
+	'280001160', --objeto_cuadro
+	'280000102', --objeto_cuadro_cc
+	'condicion', --identificador
+	NULL, --descripcion
+	'1', --orden
+	'condicion', --columnas_id
+	'condicion', --columnas_descripcion
+	'0', --pie_contar_filas
+	'0', --pie_mostrar_titular
+	'0', --pie_mostrar_titulos
+	NULL, --imp_paginar
+	'0'  --modo_inicio_colapsado
+);
+--- FIN Grupo de desarrollo 280
 
 ------------------------------------------------------------
 -- apex_objeto_ei_cuadro_columna
@@ -95,7 +117,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002256', --objeto_cuadro_col
 	'titulo', --clave
-	'1', --orden
+	'2', --orden
 	'Titulo', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
@@ -126,7 +148,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002257', --objeto_cuadro_col
 	'fecha_fin', --clave
-	'8', --orden
+	'9', --orden
 	'Fecha fin', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
@@ -157,7 +179,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002258', --objeto_cuadro_col
 	'cupo', --clave
-	'9', --orden
+	'10', --orden
 	'Cupo', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
@@ -188,7 +210,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002259', --objeto_cuadro_col
 	'ins_fecha_inicio', --clave
-	'13', --orden
+	'14', --orden
 	'fecha inicio inscrip', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
@@ -219,7 +241,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002260', --objeto_cuadro_col
 	'lugar', --clave
-	'11', --orden
+	'12', --orden
 	'Lugar', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
@@ -250,7 +272,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002261', --objeto_cuadro_col
 	'ins_fecha_fin', --clave
-	'14', --orden
+	'15', --orden
 	'fecha fin inscrip', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
@@ -281,7 +303,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002262', --objeto_cuadro_col
 	'resolucion_desc', --clave
-	'10', --orden
+	'11', --orden
 	'Resolución', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
@@ -312,7 +334,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002263', --objeto_cuadro_col
 	'localidad_desc', --clave
-	'12', --orden
+	'13', --orden
 	'Localidad', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'0', --estilo
@@ -343,7 +365,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002264', --objeto_cuadro_col
 	'tipo_desc', --clave
-	'2', --orden
+	'3', --orden
 	'Tipo', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
@@ -374,7 +396,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002265', --objeto_cuadro_col
 	'modalidad_desc', --clave
-	'3', --orden
+	'4', --orden
 	'Modalidad', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
@@ -405,7 +427,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002266', --objeto_cuadro_col
 	'organizador_desc', --clave
-	'4', --orden
+	'5', --orden
 	'Organizador', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
@@ -436,7 +458,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002267', --objeto_cuadro_col
 	'otorgado_por_desc', --clave
-	'5', --orden
+	'6', --orden
 	'Otorgado por', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
@@ -467,7 +489,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002268', --objeto_cuadro_col
 	'estado_desc', --clave
-	'6', --orden
+	'7', --orden
 	'Estado', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
@@ -498,7 +520,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'280001160', --objeto_cuadro
 	'280002269', --objeto_cuadro_col
 	'fecha_inicio', --clave
-	'7', --orden
+	'8', --orden
 	'Fecha inicio', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'col-cen-s1', --estilo
@@ -513,6 +535,37 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'0', --total
 	NULL, --total_cc
 	'0', --usar_vinculo
+	NULL, --vinculo_carpeta
+	NULL, --vinculo_item
+	NULL, --vinculo_popup
+	NULL, --vinculo_popup_param
+	NULL, --vinculo_target
+	NULL, --vinculo_celda
+	NULL, --vinculo_servicio
+	'0', --permitir_html
+	NULL, --grupo
+	NULL  --evento_asociado
+);
+INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro, objeto_cuadro_col, clave, orden, titulo, estilo_titulo, estilo, ancho, formateo, vinculo_indice, no_ordenar, mostrar_xls, mostrar_pdf, pdf_propiedades, desabilitado, total, total_cc, usar_vinculo, vinculo_carpeta, vinculo_item, vinculo_popup, vinculo_popup_param, vinculo_target, vinculo_celda, vinculo_servicio, permitir_html, grupo, evento_asociado) VALUES (
+	'gnosis', --objeto_cuadro_proyecto
+	'280001160', --objeto_cuadro
+	'280002270', --objeto_cuadro_col
+	'rol', --clave
+	'1', --orden
+	'estado inscripción/rol', --titulo
+	'ei-cuadro-col-tit', --estilo_titulo
+	'4', --estilo
+	NULL, --ancho
+	'1', --formateo
+	NULL, --vinculo_indice
+	NULL, --no_ordenar
+	NULL, --mostrar_xls
+	NULL, --mostrar_pdf
+	NULL, --pdf_propiedades
+	NULL, --desabilitado
+	NULL, --total
+	NULL, --total_cc
+	NULL, --usar_vinculo
 	NULL, --vinculo_carpeta
 	NULL, --vinculo_item
 	NULL, --vinculo_popup

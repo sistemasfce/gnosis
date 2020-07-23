@@ -88,14 +88,42 @@ class co_eventos
     
     function get_eventos_persona($persona)
     {
-        $sql = "SELECT evento, estado, 'inscripto'
-                FROM ins_inscripciones
+        $sql = "SELECT evt_eventos.*,
+                    resolucion || '/' || resolucion_anio || ' ' || evt_resoluciones_tipos.descripcion as resolucion_desc,
+                    substring(evt_eventos.titulo from 1 for 100) descripcion_corta,
+                    evt_tipos.descripcion as tipo_desc,
+                    evt_modalidades.descripcion as modalidad_desc,
+                    mug_localidades.nombre as localidad_desc,
+                    evt_estados.descripcion as estado_desc,
+                    ins_estados.descripcion as rol,
+                    'Inscripciones a eventos' as condicion
+                FROM ins_inscripciones LEFT OUTER JOIN evt_eventos ON ins_inscripciones.evento = evt_eventos.evento
+                LEFT OUTER JOIN evt_tipos ON evt_eventos.tipo = evt_tipos.tipo
+                LEFT OUTER JOIN evt_resoluciones_tipos ON evt_eventos.resolucion_tipo = evt_resoluciones_tipos.resolucion_tipo
+                LEFT OUTER JOIN evt_estados ON evt_eventos.estado = evt_estados.estado
+                LEFT OUTER JOIN evt_modalidades ON evt_eventos.modalidad = evt_modalidades.modalidad
+                LEFT OUTER JOIN mug_localidades ON evt_eventos.localidad = mug_localidades.localidad
+                LEFT OUTER JOIN ins_estados ON ins_inscripciones.estado = ins_estados.estado
                 WHERE persona = $persona
                     
                 UNION
                 
-                SELECT evento, rol, 'disertante'
-                FROM evt_eventos_disertantes
+               SELECT evt_eventos.*,
+                    resolucion || '/' || resolucion_anio || ' ' || evt_resoluciones_tipos.descripcion as resolucion_desc,
+                    substring(evt_eventos.titulo from 1 for 100) descripcion_corta,
+                    evt_tipos.descripcion as tipo_desc,
+                    evt_modalidades.descripcion as modalidad_desc,
+                    mug_localidades.nombre as localidad_desc,
+                    evt_estados.descripcion as estado_desc,
+                    par_roles.descripcion as rol,
+                    'Participaciones en eventos' as condicion
+                FROM evt_eventos_disertantes LEFT OUTER JOIN evt_eventos ON evt_eventos_disertantes.evento = evt_eventos.evento
+                LEFT OUTER JOIN evt_tipos ON evt_eventos.tipo = evt_tipos.tipo
+                LEFT OUTER JOIN evt_resoluciones_tipos ON evt_eventos.resolucion_tipo = evt_resoluciones_tipos.resolucion_tipo
+                LEFT OUTER JOIN evt_estados ON evt_eventos.estado = evt_estados.estado
+                LEFT OUTER JOIN evt_modalidades ON evt_eventos.modalidad = evt_modalidades.modalidad
+                LEFT OUTER JOIN mug_localidades ON evt_eventos.localidad = mug_localidades.localidad
+                LEFT OUTER JOIN par_roles ON evt_eventos_disertantes.rol = par_roles.rol
                 WHERE persona = $persona
         ";
 	return toba::db()->consultar($sql);   

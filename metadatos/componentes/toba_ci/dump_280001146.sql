@@ -219,6 +219,18 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'gnosis', --proyecto
+	'280001075', --dep_id
+	'280001146', --objeto_consumidor
+	'280001162', --objeto_proveedor
+	'form_condiciones', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
 	'280001058', --dep_id
 	'280001146', --objeto_consumidor
 	'280001150', --objeto_proveedor
@@ -275,9 +287,7 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	NULL, --eventos
 	NULL, --subclase
 	NULL, --subclase_archivo
-	'<p>[dep id=filtro]</p><p>[dep id=form]</p>
-<hr />
-<p>[dep id=cuadro]</p><p>&nbsp;</p><p><strong style="color: rgb(0, 0, 0); font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; text-align: justify;"><font color="#000000"><font face="Calibri, sans-serif"><font size="1"><span style="font-weight: normal;">FCE UNPSJB mantiene los niveles de seguridad de protecci&oacute;n de datos personales conforme a la Ley, relativo a las medidas de seguridad de los ficheros automatizados que contengan datos de car&aacute;cter personal, y ha establecido todos los medios t&eacute;cnicos a su alcance para evitar la p&eacute;rdida, mal uso, alteraci&oacute;n, acceso no autorizado y robo de los datos que el usuario facilite a trav&eacute;s del sitio web, sin perjuicio de informarle de que las medidas de seguridad en Internet no son inexpugnables. FCE UNPSJB se compromete a cumplir con el deber de secreto y confidencialidad respecto de los datos personales contenidos en el fichero automatizado de acuerdo con la legislaci&oacute;n aplicable, as&iacute; como a conferirles un tratamiento seguro en las cesiones, que en su caso, puedan producirse.</span></font></font></font></strong></p>', --template
+	NULL, --template
 	NULL, --template_impresion
 	'280000005'  --punto_montaje
 );
@@ -366,22 +376,29 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'gnosis', --proyecto
 	'280000362', --pantalla
 	'280001146', --objeto_ci
-	'0', --orden
+	'1', --orden
 	'280001051'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'gnosis', --proyecto
 	'280000362', --pantalla
 	'280001146', --objeto_ci
-	'1', --orden
+	'2', --orden
 	'280001052'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'gnosis', --proyecto
 	'280000362', --pantalla
 	'280001146', --objeto_ci
-	'2', --orden
+	'0', --orden
 	'280001059'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'gnosis', --proyecto
+	'280000362', --pantalla
+	'280001146', --objeto_ci
+	'3', --orden
+	'280001075'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'gnosis', --proyecto

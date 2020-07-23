@@ -42,7 +42,8 @@ class ci_front extends gnosis_ci
 
     function conf__cuadro(gnosis_ei_cuadro $cuadro)
     {   
-        $where = "evt_eventos.estado in (". comunes::evt_en_insc .",". comunes::evt_en_curso .")";
+        $where = "evt_eventos.estado in (". comunes::evt_en_insc .")";
+        $where .= " AND (ins_fecha_inicio < now() or ins_fecha_inicio is null) AND (ins_fecha_fin > now() or ins_fecha_fin is null)";
         $datos = toba::consulta_php('co_eventos')->get_eventos($where);
         $cuadro->set_datos($datos);
     }
@@ -71,7 +72,7 @@ class ci_front extends gnosis_ci
         } else {
             $persona = toba::memoria()->get_dato('persona');            
             $nombre = toba::consulta_php('co_personas')->get_nombre_completo($persona);
-            $datos['nombre'] = $nombre['nombre_completo'];
+            $datos['nombre_completo'] = $nombre['nombre_completo'];
         }
         $this->relacion()->cargar(array("persona"=> $persona));
         $form->set_datos($datos);       

@@ -10,7 +10,7 @@ class co_personas
     
     function get_id($doc)
     {
-        $sql = "SELECT persona FROM tmp_personas WHERE documento = $doc";
+        $sql = "SELECT persona FROM tmp_personas WHERE documento = '$doc'";
         return toba::db()->consultar_fila($sql);  
     }    
     
