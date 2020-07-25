@@ -4,25 +4,25 @@ class co_personas
 {
     function get_documento($id)
     {
-        $sql = "SELECT documento FROM tmp_personas WHERE persona = $id";
+        $sql = "SELECT documento FROM negocio.personas WHERE persona = $id";
         return toba::db()->consultar_fila($sql);  
     }
     
     function get_id($doc)
     {
-        $sql = "SELECT persona FROM tmp_personas WHERE documento = '$doc'";
+        $sql = "SELECT persona FROM negocio.personas WHERE documento = '$doc'";
         return toba::db()->consultar_fila($sql);  
     }    
     
     function get_nombre_completo($id)
     {
-        $sql = "SELECT COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo FROM tmp_personas WHERE persona = $id";
+        $sql = "SELECT COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo FROM negocio.personas WHERE persona = $id";
         return toba::db()->consultar_fila($sql);  
     }
 
     function get_mail($id)
     {
-        $sql = "SELECT mail FROM tmp_personas WHERE persona = $id";
+        $sql = "SELECT email FROM negocio.personas WHERE persona = $id";
         return toba::db()->consultar_fila($sql);  
     } 
     
@@ -30,7 +30,7 @@ class co_personas
     {
         $sql = "SELECT *,
                 COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo
-                FROM tmp_personas WHERE persona = $id";
+                FROM negocio.personas WHERE persona = $id";
         return toba::db()->consultar_fila($sql);  
     }     
     
@@ -38,7 +38,7 @@ class co_personas
     {
         $sql = "SELECT *,
                 COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo
-                FROM tmp_personas LEFT OUTER JOIN ins_inscripciones ON tmp_personas.persona = ins_inscripciones.persona
+                FROM negocio.personas LEFT OUTER JOIN ins_inscripciones ON negocio.personas.persona = ins_inscripciones.persona
                 WHERE ins_inscripciones.inscripcion = $id";
         return toba::db()->consultar_fila($sql);  
     }     
@@ -46,7 +46,7 @@ class co_personas
     function get_personas($where='1=1')
     {
         $sql = "SELECT *,
-                COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo FROM tmp_personas 
+                COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo FROM negocio.personas 
                 WHERE $where ORDER BY nombre_completo";
         return toba::db()->consultar($sql);
     }    

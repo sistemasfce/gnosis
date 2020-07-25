@@ -193,12 +193,7 @@ class ci_front extends gnosis_ci
     {
         $datos = $this->relacion()->tabla('evt_eventos_disertantes')->get_filas();
         $cuadro->set_datos($datos);
-    }
-
-    function evt__cuadro_eventos_dic__seleccion($seleccion)
-    {
-        $this->relacion()->tabla('evt_eventos_disertantes')->set_cursor($seleccion);
-    }    
+    }   
     
     //-----------------------------------------------------------------------------------
     //---- filtro -----------------------------------------------------------------------
@@ -255,4 +250,25 @@ class ci_front extends gnosis_ci
         list($anio,$mes,$dia)=explode("-",$fecha);
         return $dia."-".$mes."-".$anio;
     }     
+    
+    //-----------------------------------------------------------------------------------
+    function vista_jasperreports(toba_vista_jasperreports $report) 
+    {
+        $report->set_nombre_archivo('certificado.pdf');
+        $path_toba = toba::proyecto()->get_path().'/exportaciones/jasper/';
+        $path = $path_toba.'certificadoGnosis.jasper';
+	$report->set_path_reporte($path);
+        
+        $persona = toba::memoria()->get_dato('persona'); 
+        $tipo = toba::memoria()->get_parametro('param');
+        
+        #$nombre = $this->s__datos_finales['nombre'];
+        #$documento = $this->s__datos_finales['dni'];
+
+        $report->set_parametro('texto','S','$texto');
+        $report->set_parametro('nombre','S','$nombre');
+        $report->set_parametro('documento','S','$documento');
+
+        $report->completar_con_datos();				
+    }    
 }

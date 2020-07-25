@@ -60,7 +60,7 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 	'gnosis', --fuente_datos_proyecto
 	'gnosis', --fuente_datos
 	'1', --permite_actualizacion_automatica
-	NULL, --esquema
+	'gnosis', --esquema
 	'negocio'  --esquema_ext
 );
 

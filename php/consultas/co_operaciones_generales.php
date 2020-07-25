@@ -7,7 +7,7 @@ class co_operaciones_generales
         $filtro = 'WHERE true';
         if (!is_null($pais)) {
             $pais = toba::db()->quote($pais);
-            $filtro .= " AND mug_paises.pais = $pais"; 
+            $filtro .= " AND negocio.mug_paises.pais = $pais"; 
         }   
         if ($where) {
             $filtro .= " AND $where";
@@ -15,7 +15,7 @@ class co_operaciones_generales
             $sql = "SELECT pais as valor,
                            nombre as descr,
                            nombre || ' - (' || pais || ')'  as descr2
-                    FROM   mug_paises
+                    FROM   negocio.mug_paises
                     $filtro
                     ORDER BY nombre
             ";
@@ -30,15 +30,15 @@ class co_operaciones_generales
         $where = '';
         if (!is_null($pais)) {
             $pais = toba::db()->quote($pais);
-            $where .= " AND mug_paises.pais = $pais";
+            $where .= " AND negocio.mug_paises.pais = $pais";
         }
-        $sql = "SELECT          mug_provincias.provincia as valor,
-                                                mug_provincias.nombre as descr
-                        FROM            mug_provincias,
-                                                mug_paises
-                        WHERE           mug_provincias.pais = mug_paises.pais
+        $sql = "SELECT          negocio.mug_provincias.provincia as valor,
+                                                negocio.mug_provincias.nombre as descr
+                        FROM            negocio.mug_provincias,
+                                                negocio.mug_paises
+                        WHERE           negocio.mug_provincias.pais = negocio.mug_paises.pais
                                                 $where
-                        ORDER BY        mug_provincias.nombre
+                        ORDER BY        negocio.mug_provincias.nombre
         ";
         return toba::db()->consultar($sql);
    }
@@ -58,30 +58,30 @@ class co_operaciones_generales
         }
 
         if ($con_CP) {
-            $select = ' DISTINCT ON (mug_localidades.nombre,mug_localidades.localidad) ';
-            $valor_cp = " || ':' || COALESCE(mug_cod_postales.codigo_postal, '') ";
-            $from = ' LEFT OUTER JOIN mug_cod_postales ON mug_localidades.localidad = mug_cod_postales.localidad ';
+            $select = ' DISTINCT ON (negocio.mug_localidades.nombre, negocio.mug_localidades.localidad) ';
+            $valor_cp = " || ':' || COALESCE(negocio.mug_cod_postales.codigo_postal, '') ";
+            $from = ' LEFT OUTER JOIN negocio.mug_cod_postales ON negocio.mug_localidades.localidad = negocio.mug_cod_postales.localidad ';
         }
 
         $sql = "SELECT  $select
-                        mug_localidades.localidad $valor_cp as localidad_valor,
-                        mug_localidades.localidad,
-                        mug_localidades.nombre as localidad_nombre,
-                        mug_paises.pais as pais_valor,
-                        mug_paises.nombre as pais_nombre,
-                        mug_provincias.provincia as provincia_valor,
-                        mug_provincias.nombre as provincia_nombre,
-                        mug_dptos_partidos.dpto_partido as departamento_valor,
-                 mug_dptos_partidos.nombre as departamento_nombre,
-                 mug_localidades.nombre || ' - ' || mug_dptos_partidos.nombre || ' - ' || mug_provincias.nombre || ' - ' || mug_paises.nombre as identificador_localidad
-                FROM    mug_localidades
+                        negocio.mug_localidades.localidad $valor_cp as localidad_valor,
+                        negocio.mug_localidades.localidad,
+                        negocio.mug_localidades.nombre as localidad_nombre,
+                        negocio.mug_paises.pais as pais_valor,
+                        negocio.mug_paises.nombre as pais_nombre,
+                        negocio.mug_provincias.provincia as provincia_valor,
+                        negocio.mug_provincias.nombre as provincia_nombre,
+                        negocio.mug_dptos_partidos.dpto_partido as departamento_valor,
+                 negocio.mug_dptos_partidos.nombre as departamento_nombre,
+                 negocio.mug_localidades.nombre || ' - ' || negocio.mug_dptos_partidos.nombre || ' - ' || negocio.mug_provincias.nombre || ' - ' || negocio.mug_paises.nombre as identificador_localidad
+                FROM    negocio.mug_localidades
                         $from,
-                        mug_dptos_partidos,
-                        mug_provincias,
-                        mug_paises
-                WHERE   mug_localidades.dpto_partido = mug_dptos_partidos.dpto_partido
-                        AND     mug_dptos_partidos.provincia = mug_provincias.provincia
-                        AND     mug_provincias.pais = mug_paises.pais
+                        negocio.mug_dptos_partidos,
+                        negocio.mug_provincias,
+                        negocio.mug_paises
+                WHERE   negocio.mug_localidades.dpto_partido = negocio.mug_dptos_partidos.dpto_partido
+                        AND     negocio.mug_dptos_partidos.provincia = negocio.mug_provincias.provincia
+                        AND     negocio.mug_provincias.pais = negocio.mug_paises.pais
                         $where
                 ORDER BY localidad_nombre
         ";
@@ -97,16 +97,16 @@ class co_operaciones_generales
             return array();
         }
         $id = toba::db()->quote($id);
-        $sql = "SELECT  mug_localidades.localidad as valor,
-                        mug_localidades.nombre || ' - ' || mug_dptos_partidos.nombre || ' - ' || mug_provincias.nombre || ' - ' || mug_paises.nombre as descr
-                FROM    mug_localidades,
-                                        mug_dptos_partidos,
-                                        mug_provincias,
-                                        mug_paises
-                WHERE   mug_localidades.dpto_partido = mug_dptos_partidos.dpto_partido AND
-                                        mug_dptos_partidos.provincia = mug_provincias.provincia AND
-                                        mug_provincias.pais = mug_paises.pais AND
-                                        mug_localidades.localidad = $id
+        $sql = "SELECT  negocio.mug_localidades.localidad as valor,
+                        negocio.mug_localidades.nombre || ' - ' || negocio.mug_dptos_partidos.nombre || ' - ' || negocio.mug_provincias.nombre || ' - ' || negocio.mug_paises.nombre as descr
+                FROM    negocio.mug_localidades,
+                                        negocio.mug_dptos_partidos,
+                                        negocio.mug_provincias,
+                                        negocio.mug_paises
+                WHERE   negocio.mug_localidades.dpto_partido = negocio.mug_dptos_partidos.dpto_partido AND
+                                        negocio.mug_dptos_partidos.provincia = negocio.mug_provincias.provincia AND
+                                        negocio.mug_provincias.pais = mug_paises.pais AND
+                                        negocio.mug_localidades.localidad = $id
         ";
         $result = toba::db()->consultar($sql);
         if (!empty($result)) {
@@ -119,7 +119,7 @@ class co_operaciones_generales
 
         $sql = "SELECT persona, 
                         COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo
-                FROM tmp_personas 
+                FROM negocio.personas 
                 WHERE $where
                 ORDER BY nombre_completo";
         return toba::db()->consultar($sql);
@@ -134,7 +134,7 @@ class co_operaciones_generales
         $id = toba::db()->quote($id);
         $sql = "SELECT persona, 
                         COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo
-                FROM tmp_personas 
+                FROM negocio.personas 
                 WHERE persona = $id
                 ORDER BY nombre_completo";
         $result = toba::db()->consultar($sql);

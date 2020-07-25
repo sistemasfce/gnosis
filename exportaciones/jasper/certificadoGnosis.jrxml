@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="certificadoGnosis" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d91a252-fbfc-42a7-9339-f9f345957d01">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fill="Solid" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Detail" fontName="SansSerif" fontSize="14" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Oblique"/>
+	<style name="Column header" forecolor="#000000" hAlign="Justified" fontName="SansSerif" fontSize="16" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+	<parameter name="texto" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nombre" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_persona" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_curso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="documento" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="personas_nombre" class="java.lang.String"/>
+	<field name="personas_cursos_id_persona" class="java.lang.Integer"/>
+	<field name="personas_cursos_id_curso" class="java.lang.Integer"/>
+	<field name="cursos_fecha_inicio" class="java.sql.Date"/>
+	<field name="cursos_fecha_fin" class="java.sql.Date"/>
+	<field name="cursos_resolucion" class="java.lang.String"/>
+	<field name="cursos_descripcion" class="java.lang.String"/>
+	<field name="cursos_lugar" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="555" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="802" height="555" uuid="d205bb36-34ff-4510-b132-3a3181b277fa"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Double"/>
+				</graphicElement>
+			</rectangle>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="10" y="13" width="90" height="93" uuid="16e094b7-1363-4639-aa01-757bf541d3eb"/>
+				<imageExpression><![CDATA["logo_oficial.jpg"]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="699" y="10" width="103" height="104" uuid="16e094b7-1363-4639-aa01-757bf541d3eb"/>
+				<imageExpression><![CDATA["escudo.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement style="Detail" x="10" y="214" width="782" height="152" uuid="8b1b9844-b930-4cbe-a1a3-c37d7de90caf"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="14" isItalic="true"/>
+					<paragraph lineSpacing="1_1_2" firstLineIndent="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{texto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" x="0" y="113" width="802" height="46" uuid="bb90da51-6291-4229-acab-5c98362d5f72"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="22" isItalic="false" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Certifica que:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Detail" x="11" y="373" width="498" height="25" uuid="bb90da51-6291-4229-acab-5c98362d5f72"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="14" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Se extiende el presente, en la ciudad de Trelew Chubut,  ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="Detail" x="514" y="373" width="247" height="25" forecolor="#000000" uuid="078bb195-c3f9-414f-81c6-6536a746fc6e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="14" isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="457" y="407" width="242" height="134" uuid="16e094b7-1363-4639-aa01-757bf541d3eb"/>
+				<imageExpression><![CDATA["firma_1.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="169" y="407" width="180" height="134" uuid="16e094b7-1363-4639-aa01-757bf541d3eb"/>
+				<imageExpression><![CDATA["firma_2.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="159" width="802" height="22" uuid="18b56bc0-2b78-4b42-b614-9b2b8f94fb1e"/>
+				<textElement textAlignment="Center">
+					<font size="16" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="184" width="802" height="20" uuid="4979f030-0941-4cf2-80fb-09845c80a725"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{documento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" x="0" y="24" width="802" height="46" uuid="bb90da51-6291-4229-acab-5c98362d5f72"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="24" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[FACULTAD DE CIENCIAS ECONOMICAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="73" width="802" height="22" forecolor="#000000" uuid="50ed5c0f-38ba-45cb-bbda-e59003055ad2"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD NACIONAL DE LA PATAGONIA SAN JUAN BOSCO]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -5,12 +5,12 @@
 INSERT INTO apex_fuente_datos_schemas (proyecto, fuente_datos, nombre, principal) VALUES (
 	'gnosis', --proyecto
 	'gnosis', --fuente_datos
-	'negocio', --nombre
+	'gnosis', --nombre
 	'0'  --principal
 );
 INSERT INTO apex_fuente_datos_schemas (proyecto, fuente_datos, nombre, principal) VALUES (
 	'gnosis', --proyecto
-	'tahio', --fuente_datos
+	'gnosis', --fuente_datos
 	'negocio', --nombre
 	'0'  --principal
 );

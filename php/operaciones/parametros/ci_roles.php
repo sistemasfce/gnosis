@@ -34,7 +34,7 @@ class ci_roles extends gnosis_ci
     function conf__form(gnosis_ei_formulario $form)
     {
         if ($this->relacion()->esta_cargada()) {
-            $datos = $this->tabla('par_roles')->get();            
+            $datos = $this->tabla('evt_roles')->get();            
             $form->set_datos($datos);
         }
     }
@@ -42,7 +42,7 @@ class ci_roles extends gnosis_ci
 
     function evt__form__alta($datos)
     {
-        $this->tabla('par_roles')->set($datos);
+        $this->tabla('evt_roles')->set($datos);
         $this->relacion()->sincronizar();
         $this->relacion()->resetear();
     }
@@ -59,7 +59,7 @@ class ci_roles extends gnosis_ci
 
     function evt__form__modificacion($datos)
     {
-        $this->tabla('par_roles')->set($datos);
+        $this->tabla('evt_roles')->set($datos);
         $this->relacion()->sincronizar();
         $this->relacion()->resetear();
     }

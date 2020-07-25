@@ -57,23 +57,12 @@ class co_parametros
     {
 	if (!isset($where)) $where = '1=1';
         $sql = "SELECT *
-		FROM par_roles
+		FROM evt_roles
 		WHERE $where
         ";
 	return toba::db()->consultar($sql);
     }     
     
-    function get_areas_interes($where=null)
-    {
-	if (!isset($where)) $where = '1=1';
-        $sql = "SELECT *
-		FROM dap_areas_interes
-		WHERE $where
-                ORDER BY descripcion
-        ";
-	return toba::db()->consultar($sql);
-    }
-
     function get_estados_inscripciones($where=null)
     {
 	if (!isset($where)) $where = '1=1';
@@ -98,7 +87,7 @@ class co_parametros
     {
 	if (!isset($where)) $where = '1=1';
         $sql = "SELECT *
-		FROM evt_resoluciones_tipos
+		FROM negocio.resoluciones_tipos
 		WHERE $where
         ";
 	return toba::db()->consultar($sql);
@@ -108,7 +97,7 @@ class co_parametros
     {
 	if (!isset($where)) $where = '1=1';
         $sql = "SELECT *
-		FROM evt_ciclos_lectivos
+		FROM negocio.ciclos_lectivos
 		WHERE $where
         ";
 	return toba::db()->consultar($sql);

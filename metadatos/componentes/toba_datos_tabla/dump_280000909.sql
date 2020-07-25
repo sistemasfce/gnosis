@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[280000909]--  DT - evt_resoluciones_tipos 
+--[280000909]--  DT - resoluciones_tipos 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -20,7 +20,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'DT - evt_resoluciones_tipos', --nombre
+	'DT - resoluciones_tipos', --nombre
 	NULL, --titulo
 	NULL, --colapsable
 	NULL, --descripcion
@@ -53,14 +53,14 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 	'1', --ap
 	NULL, --ap_clase
 	NULL, --ap_archivo
-	'evt_resoluciones_tipos', --tabla
+	'resoluciones_tipos', --tabla
 	NULL, --tabla_ext
 	NULL, --alias
 	'0', --modificar_claves
 	'gnosis', --fuente_datos_proyecto
 	'gnosis', --fuente_datos
 	'1', --permite_actualizacion_automatica
-	NULL, --esquema
+	'negocio', --esquema
 	'negocio'  --esquema_ext
 );
 
@@ -72,21 +72,21 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'gnosis', --objeto_proyecto
 	'280000909', --objeto
-	'280001195', --col_id
+	'280001360', --col_id
 	'resolucion_tipo', --columna
 	'E', --tipo
 	'1', --pk
-	'evt_resoluciones_tipos_resolucion_tipo_seq', --secuencia
+	'resoluciones_tipos_resolucion_tipo_seq', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'1', --no_nulo_db
 	NULL, --externa
-	'evt_resoluciones_tipos'  --tabla
+	'resoluciones_tipos'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'gnosis', --objeto_proyecto
 	'280000909', --objeto
-	'280001196', --col_id
+	'280001361', --col_id
 	'descripcion', --columna
 	'C', --tipo
 	'0', --pk
@@ -95,6 +95,20 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	NULL, --externa
-	'evt_resoluciones_tipos'  --tabla
+	'resoluciones_tipos'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'gnosis', --objeto_proyecto
+	'280000909', --objeto
+	'280001362', --col_id
+	'activo', --columna
+	'C', --tipo
+	'0', --pk
+	'', --secuencia
+	'1', --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	NULL, --externa
+	'resoluciones_tipos'  --tabla
 );
 --- FIN Grupo de desarrollo 280

@@ -60,7 +60,7 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 	'gnosis', --fuente_datos_proyecto
 	'gnosis', --fuente_datos
 	'1', --permite_actualizacion_automatica
-	NULL, --esquema
+	'gnosis', --esquema
 	'negocio'  --esquema_ext
 );
 
@@ -198,7 +198,7 @@ INSERT INTO apex_objeto_db_registros_ext (objeto_proyecto, objeto, externa_id, t
 	NULL, --clase
 	NULL, --include
 	'280000005', --punto_montaje
-	'SELECT descripcion as rol_desc FROM par_roles WHERE rol = %rol%;', --sql
+	'SELECT descripcion as rol_desc FROM evt_roles WHERE rol = %rol%;', --sql
 	'0', --dato_estricto
 	NULL, --carga_dt
 	NULL, --carga_consulta_php

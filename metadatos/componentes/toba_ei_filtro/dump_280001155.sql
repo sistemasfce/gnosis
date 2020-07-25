@@ -670,7 +670,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	NULL, --carga_include
 	NULL, --carga_dt
 	NULL, --carga_consulta_php
-	'SELECT DISTINCT mug_localidades.localidad, mug_localidades.nombre as localidad_desc FROM evt_eventos LEFT OUTER JOIN mug_localidades ON evt_eventos.localidad = mug_localidades.localidad
+	'SELECT DISTINCT negocio.mug_localidades.localidad, negocio.mug_localidades.nombre as localidad_desc FROM evt_eventos LEFT OUTER JOIN negocio.mug_localidades ON evt_eventos.localidad = negocio.mug_localidades.localidad
 WHERE nombre <> '''' ORDER BY localidad_desc;', --carga_sql
 	'gnosis', --carga_fuente
 	NULL, --carga_lista

@@ -60,7 +60,7 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 	'gnosis', --fuente_datos_proyecto
 	'gnosis', --fuente_datos
 	'1', --permite_actualizacion_automatica
-	NULL, --esquema
+	'gnosis', --esquema
 	'negocio'  --esquema_ext
 );
 
@@ -72,7 +72,7 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'gnosis', --objeto_proyecto
 	'280000861', --objeto
-	'280001175', --col_id
+	'280001356', --col_id
 	'institucion', --columna
 	'E', --tipo
 	'1', --pk
@@ -86,7 +86,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'gnosis', --objeto_proyecto
 	'280000861', --objeto
-	'280001176', --col_id
+	'280001357', --col_id
 	'descripcion', --columna
 	'C', --tipo
 	'0', --pk
@@ -100,7 +100,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'gnosis', --objeto_proyecto
 	'280000861', --objeto
-	'280001177', --col_id
+	'280001358', --col_id
 	'telefono', --columna
 	'C', --tipo
 	'0', --pk
@@ -114,7 +114,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'gnosis', --objeto_proyecto
 	'280000861', --objeto
-	'280001178', --col_id
+	'280001359', --col_id
 	'localidad', --columna
 	'E', --tipo
 	'0', --pk

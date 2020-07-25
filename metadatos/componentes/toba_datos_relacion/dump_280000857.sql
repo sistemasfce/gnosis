@@ -65,18 +65,6 @@ INSERT INTO apex_objeto_datos_rel (proyecto, objeto, debug, clave, ap, punto_mon
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'gnosis', --proyecto
-	'280000837', --dep_id
-	'280000857', --objeto_consumidor
-	'280000951', --objeto_proveedor
-	'dap_personas', --identificador
-	'1', --parametros_a
-	'1', --parametros_b
-	NULL, --parametros_c
-	NULL, --inicializar
-	'1'  --orden
-);
-INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
-	'gnosis', --proyecto
 	'280001041', --dep_id
 	'280000857', --objeto_consumidor
 	'280000928', --objeto_proveedor
@@ -121,22 +109,6 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
 	'gnosis', --proyecto
 	'280000857', --objeto
-	'280000008', --asoc_id
-	NULL, --identificador
-	'gnosis', --padre_proyecto
-	'280000951', --padre_objeto
-	'dap_personas', --padre_id
-	NULL, --padre_clave
-	'gnosis', --hijo_proyecto
-	'280000952', --hijo_objeto
-	'ins_inscripciones', --hijo_id
-	NULL, --hijo_clave
-	NULL, --cascada
-	'1'  --orden
-);
-INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
-	'gnosis', --proyecto
-	'280000857', --objeto
 	'280000009', --asoc_id
 	NULL, --identificador
 	'gnosis', --padre_proyecto
@@ -150,22 +122,6 @@ INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador
 	NULL, --cascada
 	'2'  --orden
 );
-INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
-	'gnosis', --proyecto
-	'280000857', --objeto
-	'280000100', --asoc_id
-	NULL, --identificador
-	'gnosis', --padre_proyecto
-	'280000951', --padre_objeto
-	'dap_personas', --padre_id
-	NULL, --padre_clave
-	'gnosis', --hijo_proyecto
-	'280000928', --hijo_objeto
-	'evt_eventos_disertantes', --hijo_id
-	NULL, --hijo_clave
-	NULL, --cascada
-	'3'  --orden
-);
 --- FIN Grupo de desarrollo 280
 
 ------------------------------------------------------------
@@ -174,27 +130,9 @@ INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador
 INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
 	'gnosis', --proyecto
 	'280000857', --objeto
-	'280000008', --asoc_id
-	'280000951', --padre_objeto
-	'280001259', --padre_clave
-	'280000952', --hijo_objeto
-	'280001261'  --hijo_clave
-);
-INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
-	'gnosis', --proyecto
-	'280000857', --objeto
 	'280000009', --asoc_id
 	'280000952', --padre_objeto
 	'280001260', --padre_clave
 	'280000953', --hijo_objeto
 	'280001272'  --hijo_clave
-);
-INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
-	'gnosis', --proyecto
-	'280000857', --objeto
-	'280000100', --asoc_id
-	'280000951', --padre_objeto
-	'280001259', --padre_clave
-	'280000928', --hijo_objeto
-	'280001232'  --hijo_clave
 );
