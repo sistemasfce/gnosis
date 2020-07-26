@@ -16,8 +16,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	'toba', --clase_proyecto
 	'toba_ei_cuadro', --clase
 	'280000005', --punto_montaje
-	NULL, --subclase
-	NULL, --subclase_archivo
+	'cuadro_eventos_dic', --subclase
+	'operaciones/front/cuadro_eventos_dic.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Personas - personas_edicion - cuadro_eventos_dic', --nombre
@@ -57,7 +57,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	NULL, --confirmacion
 	NULL, --estilo
 	'apex', --imagen_recurso_origen
-	NULL, --imagen
+	'exp_pdf.gif', --imagen
 	'0', --en_botonera
 	NULL, --ayuda
 	'1', --orden

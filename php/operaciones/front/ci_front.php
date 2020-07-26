@@ -192,9 +192,10 @@ class ci_front extends gnosis_ci
     function conf__cuadro_eventos_dic(gnosis_ei_cuadro $cuadro)
     {
         $datos = $this->relacion()->tabla('evt_eventos_disertantes')->get_filas();
+        toba::memoria()->set_dato('evento',$datos);
         $cuadro->set_datos($datos);
     }   
-    
+      
     //-----------------------------------------------------------------------------------
     //---- filtro -----------------------------------------------------------------------
     //-----------------------------------------------------------------------------------
@@ -249,7 +250,19 @@ class ci_front extends gnosis_ci
     function cambiarFormatoFecha($fecha){
         list($anio,$mes,$dia)=explode("-",$fecha);
         return $dia."-".$mes."-".$anio;
-    }     
+    }   
+    
+    function reemplaza($palabra,$cadena,$reemplazo)
+    {
+        $pos = strpos($cadena, $palabra);
+        if ($pos !== false) {
+            $inicio = substr($cadena, 0, $pos);                   
+            $fin = substr($cadena, strlen($palabra)+$pos);
+            $texto = $inicio . $reemplazo . $fin;
+            return $texto;
+        } else
+            return $cadena;
+    }
     
     //-----------------------------------------------------------------------------------
     function vista_jasperreports(toba_vista_jasperreports $report) 
@@ -258,17 +271,54 @@ class ci_front extends gnosis_ci
         $path_toba = toba::proyecto()->get_path().'/exportaciones/jasper/';
         $path = $path_toba.'certificadoGnosis.jasper';
 	$report->set_path_reporte($path);
-        
-        $persona = toba::memoria()->get_dato('persona'); 
-        $tipo = toba::memoria()->get_parametro('param');
-        
-        #$nombre = $this->s__datos_finales['nombre'];
-        #$documento = $this->s__datos_finales['dni'];
 
-        $report->set_parametro('texto','S','$texto');
-        $report->set_parametro('nombre','S','$nombre');
-        $report->set_parametro('documento','S','$documento');
+        // obtengo los datos que vienen por parametro del php del cuadro
+        $parametros = toba::memoria()->get_parametro('datos');        
+        list($tipo,$fila)=explode(",",$parametros);
+        
+        $persona = toba::memoria()->get_dato('persona');
+        $nombre = toba::consulta_php('co_personas')->get_nombre_completo($persona);
+        $documento = toba::consulta_php('co_personas')->get_documento($persona);
+        $datos_tabla = toba::memoria()->get_dato('evento');
+        $id_evento = $datos_tabla[$fila]['evento'];
+        $certificado = toba::consulta_php('co_certificados')->get_certificado_evento($id_evento);
+        $datos_evento = toba::consulta_php('co_eventos')->get_eventos_info($id_evento);
 
+        if ($tipo == 'asistente') {
+            if ($datos_tabla[$fila]['certifico_aprobacion'] == 'S') {
+                $cadena = $certificado['texto_aprobacion'];
+                $cadena = $this->reemplaza('%calificacion%',$cadena,'');
+            }
+            else {
+                $cadena = $certificado['texto_asistencia'];
+            }  
+        // es disertante    
+        } else {
+            $cadena = $certificado['texto_disertante'];
+            $cadena = $this->reemplaza('%rol%',$cadena,$datos_tabla[$fila]['rol_desc']);
+        }
+        $cadena = $this->reemplaza('%evento%',$cadena,$datos_tabla[$fila]['titulo_evento']);
+        $cadena = $this->reemplaza('%fecha_inicio%',$cadena,$this->cambiarFormatoFecha($datos_evento['fecha_inicio']));
+        $cadena = $this->reemplaza('%fecha_fin%',$cadena,$this->cambiarFormatoFecha($datos_evento['fecha_fin']));
+        $cadena = $this->reemplaza('%duracion%',$cadena,$datos_evento['duracion']);
+        $cadena = $this->reemplaza('%localidad%',$cadena,$datos_evento['localidad_desc']);
+        $cadena = $this->reemplaza('%organizador%',$cadena,$datos_evento['organizador_desc']); 
+        $cadena = $this->reemplaza('%resolucion%',$cadena,$datos_evento['resolucion_desc']);
+        $texto = $cadena;
+
+        $report->set_parametro('texto','S',$texto);
+        $report->set_parametro('nombre','S',$nombre['nombre_completo']);
+        $report->set_parametro('documento','S',$documento['documento']);
+        
+        if(isset($certificado['firma1_path']))
+            $report->set_parametro('firma1','S',$certificado['firma1_path']);
+        if(isset($certificado['firma2_path']))
+            $report->set_parametro('firma2','S',$certificado['firma2_path']);
+        if(isset($certificado['firma3_path']))
+            $report->set_parametro('firma3','S',$certificado['firma3_path']);
+        if(isset($certificado['firma4_path']))
+            $report->set_parametro('firma4','S',$certificado['firma4_path']);
+                
         $report->completar_con_datos();				
     }    
 }

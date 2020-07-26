@@ -57,7 +57,7 @@ class ci_firmas extends gnosis_ci
         if ($datos['firma_archivo'] != '') {
             $nombre_archivo = $datos['firma_archivo']['name'];
             $nombre_nuevo = 'firma_'.$datos['persona'].'.png';
-            $destino = '/home/fce/firmas_gn/'.$nombre_nuevo;
+            $destino = toba::proyecto()->get_path().'/exportaciones/jasper/'.$nombre_nuevo;
             // Mover los archivos subidos al servidor del directorio temporal PHP a uno propio.
             move_uploaded_file($datos['firma_archivo']['tmp_name'], $destino); 
             $datos['firma_path'] = $destino;   
