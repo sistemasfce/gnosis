@@ -1,6 +1,8 @@
 <?php
 class ci_personas_edicion extends gnosis_ci
 {
+    protected $s__claveAnterior;
+        
     //-------------------------------------------------------------------------
     function relacion()
     {
@@ -12,70 +14,58 @@ class ci_personas_edicion extends gnosis_ci
     {
         return $this->controlador->dep('relacion')->tabla($id);    
     }
-    
-    //-----------------------------------------------------------------------------------
-    //---- Configuraciones --------------------------------------------------------------
-    //-----------------------------------------------------------------------------------
 
-    function conf__personas_eventos_as()
-    {   
-        if (!$this->relacion()->tabla('ins_inscripciones')->hay_cursor()) {
-            $this->pantalla('personas_eventos_as')->eliminar_dep('cuestionario');
-        } 
-    }    
-    
-    //-----------------------------------------------------------------------------------
-    //---- cuadro_eventos_as ------------------------------------------------------------
-    //-----------------------------------------------------------------------------------
-
-    function conf__cuadro_eventos_as(gnosis_ei_cuadro $cuadro)
+    //-------------------------------------------------------------------------
+    function relacionToba()
     {
-        $datos = $this->relacion()->tabla('ins_inscripciones')->get_filas();
-        toba::memoria()->set_dato('evento',$datos);
-        $cuadro->set_datos($datos);
+        return $this->controlador->dep('relacion_toba');
     }
 
-    //-----------------------------------------------------------------------------------
-    function evt__cuadro_eventos_as__cuestionario($seleccion)
+    //-------------------------------------------------------------------------
+    function tablaToba($id)
     {
-        toba::memoria()->set_dato('fila',$seleccion);
-        $this->relacion()->tabla('ins_inscripciones')->set_cursor($seleccion);
-        $this->pantalla('personas_eventos_as')->agregar_dep('cuestionario');
-    }   
-    
-    function conf_evt__cuadro_eventos_as__cuestionario(toba_evento_usuario $evento, $fila)
-    {
-        $datos = toba::memoria()->get_dato('evento');
-        if ($datos[$fila]['debe_cuestionario'] == 'N') {
-            $evento->desactivar(); 
-        }
-        else {
-            $evento->activar();  
-        }  
+        return $this->controlador->dep('relacion_toba')->tabla($id);    
     }  
     
-    function conf_evt__cuadro_eventos_as__certificado(toba_evento_usuario $evento, $fila)
+    //-----------------------------------------------------------------------------------
+    //---- form -------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
+
+    function conf__form(gnosis_ei_formulario $form)
     {
-        $datos = toba::memoria()->get_dato('evento');
-        if ($datos[$fila]['debe_cuestionario'] == 'S') {
-            $evento->desactivar(); 
+        if ($this->relacion()->esta_cargada()) {
+            $datos = $this->tabla('personas')->get();
+            $this->s__claveAnterior = $datos['clave'];
+            $form->set_datos($datos);
+        } 
+    } 
+    
+    function evt__form__modificacion($datos)
+    {
+        $claveUsuario = $datos['clave'];
+        if ($this->s__claveAnterior != $claveUsuario) {
+            $clave_enc = encriptar_con_sal($claveUsuario, 'sha256');
+            $datos['clave'] = $clave_enc;
+            // actualizar tambien la clave en tabla toba
+            toba::consulta_php('co_toba_usuarios')->actualizar_clave($datos['documento'],$clave_enc);
         }
-        else {
-            $evento->activar();  
-        }  
-    }   
-    //-----------------------------------------------------------------------------------
-    //---- cuadro_eventos_dic -----------------------------------------------------------
-    //-----------------------------------------------------------------------------------
 
-    function conf__cuadro_eventos_dic(gnosis_ei_cuadro $cuadro)
-    {
-        $datos = $this->relacion()->tabla('evt_eventos_disertantes')->get_filas();
-        $cuadro->set_datos($datos);
-    }
+        $this->tabla('personas')->set($datos);
+        $buscoUsuario = toba::consulta_php('co_toba_usuarios')->busca_usuario($datos['documento']);
+        // si la persona es nueva, no esta en tabla toba usuarios
+        if (!isset($buscoUsuario['usuario'])) {
+            $datosUser['usuario'] = $datos['documento'];
+            $datosUser['nombre'] = $datos['apellido'] . ' ' .$datos['nombres'];
+            $datosUser['clave'] = $datos['clave'];
+            $datosUser['email'] = $datos['email'];
+            $datosUser['autentificacion'] = 'sha256';
+            $datosUser['bloqueado'] = 0;
 
-    function evt__cuadro_eventos_dic__seleccion($seleccion)
-    {
-        $this->relacion()->tabla('evt_eventos_disertantes')->set_cursor($seleccion);
+            $datosPro['proyecto'] = 'planta';
+            $datosPro['usuario'] = $datos['documento'];
+            $datosPro['usuario_grupo_acc'] = 'docente';
+            #$this->tablaToba('basica')->set($datosUser);
+            #$this->tablaToba('proyecto')->nueva_fila($datosPro);
+        } 
     }    
 }

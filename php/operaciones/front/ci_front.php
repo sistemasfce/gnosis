@@ -17,7 +17,19 @@ class ci_front extends gnosis_ci
     {
         return $this->controlador->dep('relacion')->tabla($id);    
     }
+    
+    //-------------------------------------------------------------------------
+    function relacionToba()
+    {
+        return $this->controlador->dep('relacion_toba');
+    }
 
+    //-------------------------------------------------------------------------
+    function tablaToba($id)
+    {
+        return $this->controlador->dep('relacion_toba')->tabla($id);    
+    }
+    
     //-----------------------------------------------------------------------------------
     //---- Configuraciones --------------------------------------------------------------
     //-----------------------------------------------------------------------------------
@@ -35,6 +47,13 @@ class ci_front extends gnosis_ci
             toba::memoria()->set_dato('usuario','admin');
         }
     }
+
+    function conf__eventos_as()
+    {   
+        if (!$this->relacion()->tabla('ins_inscripciones')->hay_cursor()) {
+            $this->pantalla('personas_eventos_as')->eliminar_dep('cuestionario');
+        } 
+    } 
     
     //-----------------------------------------------------------------------------------
     //---- cuadro -----------------------------------------------------------------------
@@ -54,6 +73,10 @@ class ci_front extends gnosis_ci
         $this->set_pantalla('inscripcion');
     } 
 
+    //-----------------------------------------------------------------------------------
+    //---- form -------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
+    
     function conf__form(gnosis_ei_formulario $form)
     {
         $usuario = toba::memoria()->get_dato('usuario');
@@ -77,7 +100,45 @@ class ci_front extends gnosis_ci
         $this->relacion()->cargar(array("persona"=> $persona));
         $form->set_datos($datos);       
     }    
-   
+
+    function conf__form_perfil(gnosis_ei_formulario $form)
+    {
+        if ($this->relacion()->esta_cargada()) {
+            $datos = $this->tabla('personas')->get();
+            $this->s__claveAnterior = $datos['clave'];
+            $form->set_datos($datos);
+        } 
+    } 
+    
+    function evt__form_perfil__modificacion($datos)
+    {
+        $claveUsuario = $datos['clave'];
+        if ($this->s__claveAnterior != $claveUsuario) {
+            $clave_enc = encriptar_con_sal($claveUsuario, 'sha256');
+            $datos['clave'] = $clave_enc;
+            // actualizar tambien la clave en tabla toba
+            toba::consulta_php('co_toba_usuarios')->actualizar_clave($datos['documento'],$clave_enc);
+        }
+
+        $this->tabla('personas')->set($datos);
+        $buscoUsuario = toba::consulta_php('co_toba_usuarios')->busca_usuario($datos['documento']);
+        // si la persona es nueva, no esta en tabla toba usuarios
+        if (!isset($buscoUsuario['usuario'])) {
+            $datosUser['usuario'] = $datos['documento'];
+            $datosUser['nombre'] = $datos['apellido'] . ' ' .$datos['nombres'];
+            $datosUser['clave'] = $datos['clave'];
+            $datosUser['email'] = $datos['email'];
+            $datosUser['autentificacion'] = 'sha256';
+            $datosUser['bloqueado'] = 0;
+
+            $datosPro['proyecto'] = 'planta';
+            $datosPro['usuario'] = $datos['documento'];
+            $datosPro['usuario_grupo_acc'] = 'docente';
+            #$this->tablaToba('basica')->set($datosUser);
+            #$this->tablaToba('proyecto')->nueva_fila($datosPro);
+        } 
+    }     
+    
     function conf__form_inscripcion(gnosis_ei_formulario $form)
     {
         $persona = toba::memoria()->get_dato('persona'); 
@@ -132,18 +193,7 @@ class ci_front extends gnosis_ci
         $ins['como_se_entero'] = $datos['como_se_entero'];
         
         $this->relacion()->tabla('ins_inscripciones')->nueva_fila($ins);
-    }   
-
-   //-----------------------------------------------------------------------------------
-    //---- Configuraciones --------------------------------------------------------------
-    //-----------------------------------------------------------------------------------
-
-    function conf__eventos_as()
-    {   
-        if (!$this->relacion()->tabla('ins_inscripciones')->hay_cursor()) {
-            $this->pantalla('personas_eventos_as')->eliminar_dep('cuestionario');
-        } 
-    }    
+    }      
     
     //-----------------------------------------------------------------------------------
     //---- cuadro_eventos_as ------------------------------------------------------------
@@ -177,6 +227,12 @@ class ci_front extends gnosis_ci
     
     function conf_evt__cuadro_eventos_as__certificado(toba_evento_usuario $evento, $fila)
     {
+        $perfil = toba::usuario()->get_perfiles_funcionales();
+        if ($perfil[0] == 'admin') {
+            $evento->activar();  
+            return;
+        }
+        
         $datos = toba::memoria()->get_dato('evento');
         if ($datos[$fila]['debe_cuestionario'] == 'S') {
             $evento->desactivar(); 
@@ -241,11 +297,20 @@ class ci_front extends gnosis_ci
         $this->dep('relacion')->resetear();
         $this->set_pantalla('inicio');          
     }     
+    
+    function evt__guardar($datos)
+    {
+        $this->dep('relacion')->sincronizar();
+        $this->dep('relacion')->resetear();
+        $this->set_pantalla('inicio');          
+    }    
 
     function evt__cancelar($datos)
     {
         $this->set_pantalla('inicio');          
     } 
+
+    //-----------------------------------------------------------------------------------
     
     function cambiarFormatoFecha($fecha){
         list($anio,$mes,$dia)=explode("-",$fecha);
@@ -265,6 +330,7 @@ class ci_front extends gnosis_ci
     }
     
     //-----------------------------------------------------------------------------------
+    
     function vista_jasperreports(toba_vista_jasperreports $report) 
     {
         $report->set_nombre_archivo('certificado.pdf');
