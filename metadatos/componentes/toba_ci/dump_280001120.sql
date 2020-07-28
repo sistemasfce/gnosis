@@ -108,11 +108,11 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'280001120', --objeto_ci
 	'280000357', --pantalla
 	'pant_inicial', --identificador
-	NULL, --orden
+	'1', --orden
 	'Pantalla Inicial', --etiqueta
 	NULL, --descripcion
 	NULL, --tip
-	NULL, --imagen_recurso_origen
+	'apex', --imagen_recurso_origen
 	NULL, --imagen
 	NULL, --objetos
 	NULL, --eventos
@@ -120,7 +120,7 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	NULL, --subclase_archivo
 	NULL, --template
 	NULL, --template_impresion
-	NULL  --punto_montaje
+	'280000005'  --punto_montaje
 );
 --- FIN Grupo de desarrollo 280
 
@@ -131,13 +131,13 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'gnosis', --proyecto
 	'280000357', --pantalla
 	'280001120', --objeto_ci
-	'0', --orden
+	'1', --orden
 	'280001023'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'gnosis', --proyecto
 	'280000357', --pantalla
 	'280001120', --objeto_ci
-	'1', --orden
+	'0', --orden
 	'280001024'  --dep_id
 );

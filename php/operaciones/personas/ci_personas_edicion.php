@@ -3,6 +3,11 @@ class ci_personas_edicion extends gnosis_ci
 {
     protected $s__claveAnterior;
         
+    function ini()
+    {
+        toba::solicitud()->set_autocomplete(false);    //Evita que el browser quiera guardar la clave de usuario
+    }
+        
     //-------------------------------------------------------------------------
     function relacion()
     {
@@ -61,11 +66,44 @@ class ci_personas_edicion extends gnosis_ci
             $datosUser['autentificacion'] = 'sha256';
             $datosUser['bloqueado'] = 0;
 
-            $datosPro['proyecto'] = 'planta';
+            $datosPro['proyecto'] = 'gnosis';
             $datosPro['usuario'] = $datos['documento'];
-            $datosPro['usuario_grupo_acc'] = 'docente';
-            #$this->tablaToba('basica')->set($datosUser);
-            #$this->tablaToba('proyecto')->nueva_fila($datosPro);
+            $datosPro['usuario_grupo_acc'] = 'usuario';
+            $this->tablaToba('basica')->set($datosUser);
+            $this->tablaToba('proyecto')->nueva_fila($datosPro);
         } 
-    }    
+    }   
+    
+    function evt__claves()
+    {
+        try {
+            $query = "SELECT documento, apellido || ', ' || nombres as nombre_completo, email, clave_anterior FROM negocio.personas WHERE id_anterior is not null LIMIT 5";
+            $datos = toba::db()->consultar($query);
+            foreach ($datos as $dat) {
+                $query = "SELECT usuario FROM apex_usuario WHERE usuario = '" . $dat['documento'] . "'";
+                $per = toba::db('toba_usuarios')->consultar_fila($query);
+
+                if (!isset($per['usuario'])) {
+                    # no esta en toba usuarios, lo debo agregar a apex_usuario y a proyecto
+                    if ($dat['clave_anterior'] == '') {
+                       $clave_anterior = $dat['documento'];
+                    } else {
+                       $clave_anterior = $dat['clave_anterior'];
+                    }
+                    $clave_enc = encriptar_con_sal($clave_anterior, 'sha256');
+                    $query = "INSERT INTO apex_usuario (usuario, clave, nombre, email, autentificacion) VALUES ('".$dat['documento']."','".$clave_enc."','".$dat['nombre_completo']."','".$dat['email']."','sha256')";
+                    toba::db('toba_usuarios')->consultar($query);
+                    $query = "UPDATE negocio.personas SET clave = '".$clave_enc."' WHERE documento = '".$dat['documento']."' AND clave is null ";
+                    toba::db()->consultar($query);                
+
+                }
+                # ya esta en usuario, solo lo agrego a proyecto
+                $query = "INSERT INTO apex_usuario_proyecto (proyecto, usuario_grupo_acc, usuario) VALUES ('gnosis','usuario','".$dat['documento']."')";
+                toba::db('toba_usuarios')->consultar($query);
+            }
+        } catch (Exception $ex) {
+            $this->informar_msg('Error en claves - '. $ex->get_mensaje());
+        }
+ 
+    }
 }

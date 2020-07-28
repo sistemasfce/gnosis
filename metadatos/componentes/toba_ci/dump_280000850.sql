@@ -261,18 +261,6 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'gnosis', --proyecto
-	'280001080', --dep_id
-	'280000850', --objeto_consumidor
-	'280001166', --objeto_proveedor
-	'relacion_tahio', --identificador
-	NULL, --parametros_a
-	NULL, --parametros_b
-	NULL, --parametros_c
-	NULL, --inicializar
-	NULL  --orden
-);
-INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
-	'gnosis', --proyecto
 	'280001078', --dep_id
 	'280000850', --objeto_consumidor
 	'280001165', --objeto_proveedor

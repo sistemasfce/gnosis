@@ -6,6 +6,11 @@ class ci_front extends gnosis_ci
 {
     protected $s__filtro;
     
+    function ini()
+    {
+        toba::solicitud()->set_autocomplete(false);    //Evita que el browser quiera guardar la clave de usuario
+    }
+    
     //-------------------------------------------------------------------------
     function relacion()
     {
@@ -69,8 +74,18 @@ class ci_front extends gnosis_ci
     
     function evt__cuadro__seleccion($seleccion)
     {
-        toba::memoria()->set_dato('evento_seleccionado',$seleccion['evento']);
-        $this->set_pantalla('inscripcion');
+        $usuario = toba::memoria()->get_dato('usuario');
+        if ($usuario == 'admin') {
+            if (isset($this->s__filtro)) {
+                toba::memoria()->set_dato('evento_seleccionado',$seleccion['evento']);
+                $this->set_pantalla('inscripcion');
+            }  else {
+                toba::notificacion()->agregar("Te olvidaste de filtrar la persona!","info");
+            } 
+        } else {
+            toba::memoria()->set_dato('evento_seleccionado',$seleccion['evento']);
+            $this->set_pantalla('inscripcion');
+        }
     } 
 
     //-----------------------------------------------------------------------------------
@@ -131,11 +146,11 @@ class ci_front extends gnosis_ci
             $datosUser['autentificacion'] = 'sha256';
             $datosUser['bloqueado'] = 0;
 
-            $datosPro['proyecto'] = 'planta';
+            $datosPro['proyecto'] = 'gnosis';
             $datosPro['usuario'] = $datos['documento'];
-            $datosPro['usuario_grupo_acc'] = 'docente';
-            #$this->tablaToba('basica')->set($datosUser);
-            #$this->tablaToba('proyecto')->nueva_fila($datosPro);
+            $datosPro['usuario_grupo_acc'] = 'usuario';
+            $this->tablaToba('basica')->set($datosUser);
+            $this->tablaToba('proyecto')->nueva_fila($datosPro);
         } 
     }     
     
@@ -217,11 +232,11 @@ class ci_front extends gnosis_ci
     function conf_evt__cuadro_eventos_as__cuestionario(toba_evento_usuario $evento, $fila)
     {
         $datos = toba::memoria()->get_dato('evento');
-        if ($datos[$fila]['debe_cuestionario'] == 'N') {
-            $evento->desactivar(); 
+        if ($datos[$fila]['debe_cuestionario'] == 'S' and $datos[$fila]['estado'] ==comunes::ins_aceptado and $datos[$fila]['evento_estado'] ==comunes::evt_finalizado) {
+            $evento->activar(); 
         }
         else {
-            $evento->activar();  
+            $evento->desactivar();  
         }  
     }  
     

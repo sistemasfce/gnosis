@@ -15,7 +15,7 @@ class ci_personas extends gnosis_ci
     {
         return $this->controlador->dep('relacion')->tabla($id);    
     }
-/*
+
     //-------------------------------------------------------------------------
     function relacionToba()
     {
@@ -27,7 +27,7 @@ class ci_personas extends gnosis_ci
     {
         return $this->controlador->dep('relacion_toba')->tabla($id);    
     }    
- */   
+  
     //-------------------------------------------------------------------------
     function relacionTahio()
     {
@@ -47,7 +47,6 @@ class ci_personas extends gnosis_ci
     function conf__cuadro(gnosis_ei_cuadro $cuadro)
     {
         $where = $this->dep('filtro')->get_sql_where();
-        //$datos = toba::consulta_php('co_tahio')->get_personas($where);
         $datos = toba::consulta_php('co_personas')->get_personas($where);
         $cuadro->set_datos($datos);
     }
@@ -92,10 +91,10 @@ class ci_personas extends gnosis_ci
             try {
                 $this->dep('relacion')->sincronizar();
                 $this->dep('relacion')->resetear();
-                #$this->dep('relacion_toba')->sincronizar();
-                #$this->dep('relacion_toba')->resetear();
+                $this->dep('relacion_toba')->sincronizar();
+                $this->dep('relacion_toba')->resetear();
             } catch (toba_error $e) {
-                $this->informar_msg('Error al dar de alta usuario - '. $e->get_mensaje());
+                $this->informar_msg('Error al guardar datos del usuario - '. $e->get_mensaje());
                 return;
             }  
         }    
@@ -103,63 +102,6 @@ class ci_personas extends gnosis_ci
         $this->set_pantalla('seleccion');
     }
 
-    //-----------------------------------------------------------------------------------
-    //---- form -------------------------------------------------------------------------
-    //-----------------------------------------------------------------------------------
-
-    function conf__form(gnosis_ei_formulario $form)
-    {
-        if ($this->relacion()->esta_cargada()) {
-            $datos = $this->tabla('personas')->get();
-            if ($datos['estado_docente'] == 1)
-                $datos['perfil_docente'] = 'S';
-            else
-                $datos['perfil_docente'] = 'N';
-            if ($datos['estado_nodocente'] == 1)
-                $datos['perfil_no_docente'] = 'S';
-            else
-                $datos['perfil_no_docente'] = 'N';
-            if ($datos['estado_externo'] == 1)
-                $datos['perfil_externo'] = 'S';
-            else
-                $datos['perfil_externo'] = 'N';    
-            $this->s__claveAnterior = $datos['clave'];
-            $form->set_datos($datos);
-        }
-    }
-/*
-    function evt__form__modificacion($datos)
-    {
-        $claveUsuario = $datos['clave'];
-        if ($this->s__claveAnterior != $claveUsuario) {
-            $clave_enc = encriptar_con_sal($claveUsuario, 'sha256');
-            $datos['clave'] = $clave_enc;
-            // actualizar tambien la clave en tabla toba
-            toba::consulta_php('co_toba_usuarios')->actualizar_clave($datos['documento'],$clave_enc);
-        }
-
-        $this->tablaTahio('personas')->set($datos);
-        $buscoUsuario = toba::consulta_php('co_toba_usuarios')->busca_usuario($datos['documento']);
-        // si la persona es nueva, no esta en tabla toba usuarios
-        if (!isset($buscoUsuario['usuario'])) {
-            $datosUser['usuario'] = $datos['documento'];
-            $datosUser['nombre'] = $datos['apellido'] . ' ' .$datos['nombres'];
-            $datosUser['clave'] = $datos['clave'];
-            $datosUser['email'] = $datos['email'];
-            $datosUser['autentificacion'] = 'sha256';
-            $datosUser['bloqueado'] = 0;
-
-            $datosPro['proyecto'] = 'gnosis';
-            $datosPro['usuario'] = $datos['documento'];
-            $datosPro['usuario_grupo_acc'] = 'docente';
-            $this->tablaToba('basica')->set($datosUser);
-            $this->tablaToba('proyecto')->nueva_fila($datosPro);
-            $this->s__modifica = false;
-        } else {
-            $this->s__modifica = true;
-        }
-    }
-*/
     //-----------------------------------------------------------------------------------
     //---- filtro -----------------------------------------------------------------------
     //-----------------------------------------------------------------------------------

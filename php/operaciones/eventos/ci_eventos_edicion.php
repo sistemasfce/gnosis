@@ -34,8 +34,8 @@ class ci_eventos_edicion extends gnosis_ci
             }
             // si esta cargada la resolucion armo el link para descarga
             if ($datos['resolucion_path'] != '') {
-                // el 22 es para que corte la cadena despues del caracter 19, de /home/fce/informes_gn/
-                $nombre = substr($datos['resolucion_path'],22);
+                $long = strlen('/home/fce/informes_gn/');
+                $nombre = substr($datos['resolucion_path'],$long);
                 $dir_tmp = toba::proyecto()->get_www_temp();
                 exec("cp '". $datos['resolucion_path']. "' '" .$dir_tmp['path']."/".$nombre."'");
                 $temp_archivo = toba::proyecto()->get_www_temp($nombre);
@@ -44,8 +44,8 @@ class ci_eventos_edicion extends gnosis_ci
                 $datos['resolucion_archivo'] = $nombre. ' - Tam.: '.$tamanio. ' KB';  
             }
             if ($datos['proyecto_path'] != '') {
-                // el 22 es para que corte la cadena despues del caracter 19, de /home/fce/informes_gn/
-                $nombre = substr($datos['proyecto_path'],22);
+                $long = strlen('/home/fce/informes_gn/');
+                $nombre = substr($datos['proyecto_path'],$long);
                 $dir_tmp = toba::proyecto()->get_www_temp();
                 exec("cp '". $datos['proyecto_path']. "' '" .$dir_tmp['path']."/".$nombre."'");
                 $temp_archivo = toba::proyecto()->get_www_temp($nombre);
@@ -67,7 +67,7 @@ class ci_eventos_edicion extends gnosis_ci
             $destino = '/home/fce/informes_gn/'.$nombre_nuevo;
             // Mover los archivos subidos al servidor del directorio temporal PHP a uno propio.
             move_uploaded_file($datos['resolucion_archivo']['tmp_name'], $destino);   
-            $datos['proyecto_path'] = $destino;   
+            $datos['resolucion_path'] = $destino;   
         }
         if (isset($datos['proyecto_archivo']) or isset($datos['proyecto_path'])) {
             $nombre_archivo = $datos['proyecto_archivo']['name'];
