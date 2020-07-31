@@ -77,7 +77,7 @@ class ci_personas_edicion extends gnosis_ci
     function evt__claves()
     {
         try {
-            $query = "SELECT documento, apellido || ', ' || nombres as nombre_completo, email, clave_anterior FROM negocio.personas WHERE id_anterior is not null LIMIT 5";
+            $query = "SELECT documento, apellido || ', ' || nombres as nombre_completo, email, clave_anterior FROM negocio.personas WHERE id_anterior is not null";
             $datos = toba::db()->consultar($query);
             foreach ($datos as $dat) {
                 $query = "SELECT usuario FROM apex_usuario WHERE usuario = '" . $dat['documento'] . "'";
