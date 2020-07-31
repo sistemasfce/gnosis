@@ -58,7 +58,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	NULL, --estilo
 	'apex', --imagen_recurso_origen
 	NULL, --imagen
-	'1', --en_botonera
+	'0', --en_botonera
 	NULL, --ayuda
 	'1', --orden
 	NULL, --ci_predep
