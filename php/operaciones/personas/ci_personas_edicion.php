@@ -97,9 +97,14 @@ class ci_personas_edicion extends gnosis_ci
                     toba::db()->consultar($query);                
 
                 }
-                # ya esta en usuario, solo lo agrego a proyecto
-                $query = "INSERT INTO apex_usuario_proyecto (proyecto, usuario_grupo_acc, usuario) VALUES ('gnosis','usuario','".$dat['documento']."')";
-                toba::db('toba_usuarios')->consultar($query);
+                $query = "SELECT usuario FROM apex_usuario_proyecto WHERE usuario = '" . $dat['documento'] . "'";
+                $per = toba::db('toba_usuarios')->consultar_fila($query);
+                if (!isset($per['usuario'])) {
+                    # ya esta en usuario, solo lo agrego a proyecto
+                    $query = "INSERT INTO apex_usuario_proyecto (proyecto, usuario_grupo_acc, usuario) VALUES ('gnosis','usuario','".$dat['documento']."')";
+                    toba::db('toba_usuarios')->consultar($query);                    
+                }
+
             }
         } catch (Exception $ex) {
             $this->informar_msg('Error en claves - '. $ex);
