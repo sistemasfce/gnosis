@@ -90,6 +90,7 @@ class ci_personas_edicion extends gnosis_ci
                     } else {
                        $clave_anterior = $dat['clave_anterior'];
                     }
+                    $dat['nombre_completo'] = str_replace("'","",$dat['nombre_completo']);
                     $clave_enc = encriptar_con_sal($clave_anterior, 'sha256');
                     $query = "INSERT INTO apex_usuario (usuario, clave, nombre, email, autentificacion) VALUES ('".$dat['documento']."','".$clave_enc."','".$dat['nombre_completo']."','".$dat['email']."','sha256')";
                     toba::db('toba_usuarios')->consultar($query);
