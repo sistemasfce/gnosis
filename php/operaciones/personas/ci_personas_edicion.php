@@ -102,7 +102,7 @@ class ci_personas_edicion extends gnosis_ci
                 toba::db('toba_usuarios')->consultar($query);
             }
         } catch (Exception $ex) {
-            $this->informar_msg('Error en claves - '. $ex->get_mensaje());
+            $this->informar_msg('Error en claves - '. $ex);
         }
  
     }
