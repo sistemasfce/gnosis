@@ -51,4 +51,13 @@ class co_personas
                 WHERE $where ORDER BY nombre_completo";
         return toba::db()->consultar($sql);
     }    
+    
+    function get_personas_listado($where='1=1')
+    {
+        $sql = "SELECT persona, email, documento,
+                COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo FROM negocio.personas,
+                date_part('year',age(fecha_nac)) as edad
+                WHERE $where ORDER BY nombre_completo";
+        return toba::db()->consultar($sql);
+    }    
 }
