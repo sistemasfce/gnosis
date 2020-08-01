@@ -346,7 +346,13 @@ class ci_inscripciones_edicion extends gnosis_ci
     {
         $datos = $this->tabla('evt_eventos')->get();
         $inscriptos = $this->tabla('ins_inscripciones')->get_filas();
+        $confirmados = array();
         $datosInscriptos = rs_ordenar_por_columna($inscriptos, 'nombre_completo');
+        foreach ($datosInscriptos as $d) {
+            if ($d['estado'] == comunes::ins_aceptado) {
+                $confirmados[] = $d;
+            }
+        }
 
         $salida->set_papel_tamanio('a4');
         $salida->set_papel_orientacion('portrait');
@@ -360,7 +366,7 @@ class ci_inscripciones_edicion extends gnosis_ci
         $fecha = $this->cambiarFormatoFecha(date('Y-m-d'));
         $salida->texto("Fecha: ". $fecha,12);
 
-        $tabla['datos_tabla'] = $datosInscriptos;
+        $tabla['datos_tabla'] = $confirmados;
         $tabla['titulo_tabla'] = 'Inscriptos';
         $tabla['titulos_columnas'] = array('nombre_completo' => 'APELLIDO Y NOMBRES','firma' => 'FIRMA');
 

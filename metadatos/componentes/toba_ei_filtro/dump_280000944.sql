@@ -192,7 +192,7 @@ INSERT INTO apex_objeto_ei_filtro_col (objeto_ei_filtro_col, objeto_ei_filtro, o
 	'gnosis', --objeto_ei_filtro_proyecto
 	'opciones', --tipo
 	'tipo', --nombre
-	'tevt_eventos.ipo', --expresion
+	'evt_eventos.tipo', --expresion
 	'Tipo', --etiqueta
 	NULL, --descripcion
 	'0', --obligatorio
