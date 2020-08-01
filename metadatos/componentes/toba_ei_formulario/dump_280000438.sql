@@ -105,7 +105,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	'280000289', --accion_vinculo_item
 	NULL, --accion_vinculo_objeto
 	'1', --accion_vinculo_popup
-	'width: 600px, height: 300px', --accion_vinculo_popup_param
+	NULL, --accion_vinculo_popup_param
 	NULL, --accion_vinculo_target
 	'celda_cambio', --accion_vinculo_celda
 	NULL, --accion_vinculo_servicio

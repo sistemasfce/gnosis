@@ -39,12 +39,12 @@ class ci_recordatorio_pwd extends toba_ci
 	{
 		//Miro que vengan los datos que necesito
 		if (! isset($datos['usuario'])) {
-			throw new toba_error_autenticacion('No se suministro un usuario válido');
+			throw new toba_error_autenticacion('No se suministro un usuario vï¿½lido');
 		}
 
 		//Si el usuario existe, entonces disparo el envio de mail 
 		if (! $this->verificar_usuario_activo($datos['usuario'])) {
-			throw new toba_error_autenticacion('No se suministro un usuario válido');
+			throw new toba_error_autenticacion('No se suministro un usuario vï¿½lido');
 		} 
 		$this->set_pantalla('pant_pregunta');
 		$this->s__usuario = $datos['usuario'];
@@ -75,11 +75,11 @@ class ci_recordatorio_pwd extends toba_ci
 
 	function evt__recordame()
 	{
-		//Primero verifico que se haya cumplimentado con el periodo minimo de vida de la contraseña
+		//Primero verifico que se haya cumplimentado con el periodo minimo de vida de la contraseï¿½a
 		$dias = toba_parametros::get_clave_validez_minima(toba::proyecto()->get_id());
 		if (! is_null($dias)) {
 			if (! toba_usuario::verificar_periodo_minimo_cambio($this->s__usuario, $dias)) {
-				toba::notificacion()->agregar('No transcurrio el período minimo para poder volver a cambiar su contraseña. Intentelo en otra ocasión');
+				toba::notificacion()->agregar('No transcurrio el perï¿½odo minimo para poder volver a cambiar su contraseï¿½a. Intentelo en otra ocasiï¿½n');
 				return;
 			}
 		}
@@ -96,11 +96,11 @@ class ci_recordatorio_pwd extends toba_ci
 
 	function conf__pant_inicial(toba_ei_pantalla $pantalla)
 	{
-		//Si viene con el random seteado es que esta confirmando el cambio de contraseña
+		//Si viene con el random seteado es que esta confirmando el cambio de contraseï¿½a
 		if (isset($this->randr) && ! is_null($this->randr)) {
 			$pantalla->eliminar_dep('form_usuario');
 			$this->disparar_confirmacion_cambio();
-			toba::notificacion()->agregar('La nueva contraseña fue enviada a su cuenta de mail.', 'info');
+			toba::notificacion()->agregar('La nueva contraseï¿½a fue enviada a su cuenta de mail.', 'info');
 		}
 	}
 	
@@ -109,9 +109,9 @@ class ci_recordatorio_pwd extends toba_ci
 		$this->pregunta = $this->recuperar_pregunta_secreta($this->s__usuario);
 		if (is_null($this->pregunta)) {
 			$pantalla->eliminar_dep('form_pregunta');
-			$pantalla->set_descripcion('Presione el botón para continuar con el proceso');
+			$pantalla->set_descripcion('Presione el botï¿½n para continuar con el proceso');
 		} else {
-			$pantalla->set_descripcion('Responda la pregunta y presione el botón para continuar con el proceso');
+			$pantalla->set_descripcion('Responda la pregunta y presione el botï¿½n para continuar con el proceso');
 		}
 	}
 	
@@ -140,8 +140,8 @@ class ci_recordatorio_pwd extends toba_ci
 			$clave1 = encriptar_con_sal(trim($datos['respuesta']), 'SHA256', $salt);
 			$clave2 = encriptar_con_sal(trim($datos_usuario['respuesta']), 'SHA256', $salt);
 			if ($clave1 !== $clave2) {
-				toba::logger()->error("Se intento cambiar la clave al usuario: {$this->s__usuario} pero falló la respuesta al desafío");
-				throw new toba_error('Respuesta no Válida');
+				toba::logger()->error("Se intento cambiar la clave al usuario: {$this->s__usuario} pero fallï¿½ la respuesta al desafï¿½o");
+				throw new toba_error('Respuesta no Vï¿½lida');
 			}
 		}
 	}
@@ -194,10 +194,10 @@ class ci_recordatorio_pwd extends toba_ci
 		$link = $this->generar_link_confirmacion($this->s__usuario, $tmp_rand);    //Genero el link para el mail
 		 
 		//Se envia el mail a la direccion especificada por el usuario.
-		$asunto = 'Solicitud de cambio de contraseña';
-		$cuerpo_mail = '<p>Este mail fue enviado a esta cuenta porque se <strong>solicito un cambio de contraseña</strong>.'
+		$asunto = 'Solicitud de cambio de contraseï¿½a';
+		$cuerpo_mail = '<p>Este mail fue enviado a esta cuenta porque se <strong>solicito un cambio de contraseï¿½a</strong>.'
 		. 'Si usted solicito dicho cambio haga click en el siguiente link: </br></br>'
-		. $link. '</br> El mismo será válido unicamente por 24hs.</p>';
+		. $link. '</br> El mismo serï¿½ vï¿½lido unicamente por 24hs.</p>';
 
 		//Guardo el random asociado al usuario y envio el mail
 		toba::instancia()->get_db()->abrir_transaccion();
@@ -238,14 +238,14 @@ class ci_recordatorio_pwd extends toba_ci
 	}
 	
 	/*
-	* Impacta en la base para cambiar la contraseña del usuario
+	* Impacta en la base para cambiar la contraseï¿½a del usuario
 	*/
 	function disparar_confirmacion_cambio()
 	{
 		//Recupero mail del usuario junto con el hash de confirmacion
 		$datos_rs = $this->recuperar_datos_solicitud_cambio($this->s__usuario, $this->randr);
 		if (empty($datos_rs)) {
-			toba::logger()->debug('Proceso de cambio de contraseña en base: El usuario o el random no coinciden' );
+			toba::logger()->debug('Proceso de cambio de contraseï¿½a en base: El usuario o el random no coinciden' );
 			toba::logger()->var_dump(array('rnd' => $this->randr));
 			throw new toba_error('Se produjo un error en el proceso de cambio, contactese con un administrador del sistema.');            
 		} else {
@@ -268,9 +268,9 @@ class ci_recordatorio_pwd extends toba_ci
 		} while(! $claveok);
 		
 		//Armo el mail nuevo
-		$asunto = 'Nueva contraseña';
-		$cuerpo_mail = '<p>Se ha recibido su confirmación exitosamente, su contraseña fue cambiada a: </br>' .
-		$clave_tmp . '</br> Por favor en cuanto pueda cambiela a una contraseña más segura. </br> Gracias. </p> ';
+		$asunto = 'Nueva contraseï¿½a';
+		$cuerpo_mail = '<p>Se ha recibido su confirmaciï¿½n exitosamente, su contraseï¿½a fue cambiada a: </br>' .
+		$clave_tmp . '</br> Por favor en cuanto pueda cambiela a una contraseï¿½a mï¿½s segura. </br> Gracias. </p> ';
 		
 		//Cambio la clave del flaco, envio el nuevo mail y bloqueo el random
 		toba::instancia()->get_db()->abrir_transaccion();
@@ -292,7 +292,7 @@ class ci_recordatorio_pwd extends toba_ci
 			toba::instancia()->get_db()->cerrar_transaccion();
 		} catch (toba_error $e) {
 			toba::instancia()->get_db()->abortar_transaccion();
-			toba::logger()->debug('Proceso de cambio de contraseña en base: ' . $e->getMessage());
+			toba::logger()->debug('Proceso de cambio de contraseï¿½a en base: ' . $e->getMessage());
 			throw new toba_error('Se produjo un error en el proceso de cambio, contactese con un administrador del sistema.');
 		}
 	}
