@@ -172,7 +172,7 @@ class ci_inscripciones_edicion extends gnosis_ci
             if ($i['estado'] == comunes::ins_aceptado) {
                 $dp = toba::consulta_php('co_personas')->get_datos_persona($i['persona']);
                 $i['localidad'] = $dp['localidad'];
-                $i['mail'] = $dp['mail'];
+                $i['mail'] = $dp['email'];
                 $datos[$indice] = $i;
                 $indice++;
             }

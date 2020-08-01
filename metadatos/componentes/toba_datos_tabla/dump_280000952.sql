@@ -335,16 +335,16 @@ INSERT INTO apex_objeto_db_registros_ext (objeto_proyecto, objeto, externa_id, t
 	'gnosis', --objeto_proyecto
 	'280000952', --objeto
 	'280000032', --externa_id
-	'dao', --tipo
+	'sql', --tipo
 	'1', --sincro_continua
 	'get_mail', --metodo
 	NULL, --clase
 	NULL, --include
 	'280000005', --punto_montaje
-	NULL, --sql
+	'SELECT email as mail FROM negocio.personas WHERE persona = %persona%;', --sql
 	'0', --dato_estricto
 	NULL, --carga_dt
-	'280000037', --carga_consulta_php
+	NULL, --carga_consulta_php
 	'0', --permite_carga_masiva
 	NULL  --metodo_masivo
 );
