@@ -118,7 +118,8 @@ class co_operaciones_generales
     {
 
         $sql = "SELECT persona, 
-                        COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo
+                        COALESCE(apellido || ', ' || nombres,apellido) as nombre_completo,
+                        documento
                 FROM negocio.personas 
                 WHERE $where
                 ORDER BY nombre_completo";
