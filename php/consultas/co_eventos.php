@@ -49,6 +49,29 @@ class co_eventos
 	return toba::db()->consultar_fila($sql);
     }    
     
+    function get_eventos_cuestionarios($where=null)
+    {
+        if (!isset($where)) $where = '1=1';
+        $sql = "SELECT evento,
+                evt_eventos.titulo,
+                (SELECT COUNT (*) as cant_insc FROM ins_inscripciones WHERE ins_inscripciones.estado = 2 AND ins_inscripciones.evento = evt_eventos.evento) as cant_inscriptos,
+                (SELECT COUNT (*) as cant_resp FROM ins_cuestionarios_respuestas WHERE evento = evt_eventos.evento) as cant_respuestas
+		FROM evt_eventos 
+		WHERE $where
+                ORDER BY fecha_inicio DESC
+        ";
+	return toba::db()->consultar($sql);        
+    }
+    
+    function get_respuestas_cuestionarios($id)
+    {
+         $sql = "SELECT *
+                FROM ins_cuestionarios_respuestas
+                WHERE evento = $id
+        ";
+	return toba::db()->consultar($sql); 
+    }
+    
     function get_inscripciones_evento($id)
     {
         $sql = "SELECT *

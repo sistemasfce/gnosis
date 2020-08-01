@@ -16,8 +16,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	'toba', --clase_proyecto
 	'toba_ci', --clase
 	'280000005', --punto_montaje
-	NULL, --subclase
-	NULL, --subclase_archivo
+	'ci_consultar_cuestionarios', --subclase
+	'operaciones/reportes/ci_consultar_cuestionarios.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Consultar cuestionarios', --nombre
@@ -74,10 +74,22 @@ INSERT INTO apex_objeto_mt_me (objeto_mt_me_proyecto, objeto_mt_me, ev_procesar_
 --- INICIO Grupo de desarrollo 280
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'gnosis', --proyecto
-	'280001072', --dep_id
+	'280001099', --dep_id
 	'280000924', --objeto_consumidor
-	'280001159', --objeto_proveedor
-	'filtro', --identificador
+	'280001179', --objeto_proveedor
+	'cuadro', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'gnosis', --proyecto
+	'280001100', --dep_id
+	'280000924', --objeto_consumidor
+	'280001180', --objeto_proveedor
+	'cuadro_resp', --identificador
 	NULL, --parametros_a
 	NULL, --parametros_b
 	NULL, --parametros_c
@@ -120,5 +132,12 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'280000285', --pantalla
 	'280000924', --objeto_ci
 	'0', --orden
-	'280001072'  --dep_id
+	'280001099'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'gnosis', --proyecto
+	'280000285', --pantalla
+	'280000924', --objeto_ci
+	'1', --orden
+	'280001100'  --dep_id
 );
