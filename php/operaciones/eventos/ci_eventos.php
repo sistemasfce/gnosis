@@ -21,7 +21,7 @@ class ci_eventos extends gnosis_ci
     function conf__cuadro(gnosis_ei_cuadro $cuadro)
     {
         $where = $this->dep('filtro')->get_sql_where();
-        $datos = toba::consulta_php('co_eventos')->get_eventos($where);
+        $datos = toba::consulta_php('co_eventos')->get_eventos_cuadro($where);
         $cuadro->set_datos($datos);
     }
 

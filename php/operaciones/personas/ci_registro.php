@@ -58,7 +58,7 @@ class ci_registro extends gnosis_ci
         $this->informar_msg("Gracias por registrarse en GNOSIS","info");
         $mail = new toba_mail($mail_destino, $asunto, $cuerpo_mail);
         $mail->set_html(true);
-        #$mail->enviar();
+        $mail->enviar();
 
         // vuelvo al login para que se ingrese por primera ves
         toba::vinculador()->navegar_a('gnosis','280000117');

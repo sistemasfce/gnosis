@@ -266,7 +266,24 @@ class ci_front extends gnosis_ci
         toba::memoria()->set_dato('evento',$datos);
         $cuadro->set_datos($datos);
     }   
-      
+    
+    function conf_evt__cuadro_eventos_dic__certificado(toba_evento_usuario $evento, $fila)
+    {
+        $perfil = toba::usuario()->get_perfiles_funcionales();
+        if ($perfil[0] == 'admin') {
+            $evento->activar();  
+            return;
+        }
+        
+        $datos = toba::memoria()->get_dato('evento');
+        if ($datos[$fila]['certifica'] == 'N') {
+            $evento->desactivar(); 
+        }
+        else {
+            $evento->activar();  
+        }  
+    }       
+    
     //-----------------------------------------------------------------------------------
     //---- filtro -----------------------------------------------------------------------
     //-----------------------------------------------------------------------------------

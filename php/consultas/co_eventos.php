@@ -2,6 +2,28 @@
 
 class co_eventos
 {
+    
+    function get_eventos_cuadro($where=null)
+    {
+	if (!isset($where)) $where = '1=1';
+        $sql = "SELECT evt_eventos.*,
+                    resolucion || '/' || resolucion_anio || ' ' || negocio.resoluciones_tipos.descripcion as resolucion_desc,
+                    substring(evt_eventos.titulo from 1 for 100) descripcion_corta,
+                    evt_tipos.descripcion as tipo_desc,
+                    evt_modalidades.descripcion as modalidad_desc,
+                    negocio.mug_localidades.nombre as localidad_desc,
+                    evt_estados.descripcion as estado_desc
+		FROM evt_eventos LEFT OUTER JOIN evt_tipos ON evt_eventos.tipo = evt_tipos.tipo
+                LEFT OUTER JOIN negocio.resoluciones_tipos ON evt_eventos.resolucion_tipo = negocio.resoluciones_tipos.resolucion_tipo
+                LEFT OUTER JOIN evt_estados ON evt_eventos.estado = evt_estados.estado
+                LEFT OUTER JOIN evt_modalidades ON evt_eventos.modalidad = evt_modalidades.modalidad
+                LEFT OUTER JOIN negocio.mug_localidades ON evt_eventos.localidad = negocio.mug_localidades.localidad
+		WHERE $where
+                ORDER BY fecha_inicio DESC
+        ";
+	return toba::db()->consultar($sql);
+    }    
+    
     function get_eventos($where=null)
     {
 	if (!isset($where)) $where = '1=1';
@@ -13,7 +35,10 @@ class co_eventos
                     negocio.mug_localidades.nombre as localidad_desc,
                     evt_estados.descripcion as estado_desc,
                     evt_organizadores.descripcion as organizador_desc,
-                    evt_organizadores2.descripcion as otorgado_por_desc
+                    evt_organizadores2.descripcion as otorgado_por_desc,
+                    (SELECT COUNT (*) as cant_insc FROM ins_inscripciones WHERE ins_inscripciones.evento = evt_eventos.evento) as cant_pre,
+                    (SELECT COUNT (*) as cant_insc FROM ins_inscripciones WHERE ins_inscripciones.estado = 2 AND ins_inscripciones.evento = evt_eventos.evento) as cant_inscriptos,
+                    (SELECT COUNT (*) as cant_insc FROM ins_inscripciones WHERE ins_inscripciones.certifico_asistencia = 'S' AND ins_inscripciones.evento = evt_eventos.evento) as cant_asistentes
 		FROM evt_eventos LEFT OUTER JOIN evt_tipos ON evt_eventos.tipo = evt_tipos.tipo
                 LEFT OUTER JOIN negocio.resoluciones_tipos ON evt_eventos.resolucion_tipo = negocio.resoluciones_tipos.resolucion_tipo
                 LEFT OUTER JOIN evt_estados ON evt_eventos.estado = evt_estados.estado

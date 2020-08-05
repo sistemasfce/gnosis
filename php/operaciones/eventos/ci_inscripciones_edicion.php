@@ -296,7 +296,7 @@ class ci_inscripciones_edicion extends gnosis_ci
         try {
             $mail = new toba_mail($mail_destino, $asunto, $cuerpo_mail);
             $mail->set_html(true);
-            #$mail->enviar();
+            $mail->enviar();
         } catch(Exception $e) {
             echo $e->getMessage();
         }

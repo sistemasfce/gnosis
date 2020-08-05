@@ -227,7 +227,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'gnosis', --objeto_cuadro_proyecto
 	'280001137', --objeto_cuadro
 	'280002190', --objeto_cuadro_col
-	'certificado', --clave
+	'certifica', --clave
 	'4', --orden
 	'Otorga certificado', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo

@@ -22,7 +22,7 @@ class ci_inscripciones extends gnosis_ci
     {
         $where = $this->dep('filtro')->get_sql_where();
         $where .= " AND evt_eventos.estado in (4,5,6)";
-        $datos = toba::consulta_php('co_eventos')->get_eventos($where);
+        $datos = toba::consulta_php('co_eventos')->get_eventos_cuadro($where);
         $cuadro->set_datos($datos);
     }
 

@@ -32,7 +32,7 @@ class ci_cuestionario extends gnosis_ci
         $this->tabla('ins_cuestionarios_respuestas')->sincronizar();
         
         $this->relacion()->tabla('ins_inscripciones')->resetear_cursor();
-        $this->controlador()->set_pantalla('personas_eventos_as');
+        $this->controlador()->controlador->set_pantalla('eventos_as');
     }
 
     //-----------------------------------------------------------------------------------
