@@ -21,7 +21,7 @@ require_once(toba::proyecto()->get_path_php().'/comunes.php');
         UPDATE evt_eventos
         set estado = $evt_en_curso
         WHERE estado = $evn_en_insc
-            AND fecha_inicio::date >= current_date
+            AND current_date >= fecha_inicio::date
         ";
     $datos = toba::db()->consultar($sql);    
     
@@ -30,6 +30,6 @@ require_once(toba::proyecto()->get_path_php().'/comunes.php');
         UPDATE evt_eventos
         set estado = $evt_finalizado
         WHERE estado = $evt_en_curso
-            AND fecha_fin::date > current_date
+            AND current_date > fecha_fin::date 
         ";
     $datos = toba::db()->consultar($sql);    
