@@ -1,9 +1,6 @@
 <?php
 class ci_personas extends gnosis_ci
 {
-    protected $s__claveAnterior;
-    protected $s__modifica;
-
     //-------------------------------------------------------------------------
     function relacion()
     {
@@ -84,19 +81,20 @@ class ci_personas extends gnosis_ci
 
     function evt__guardar()
     {
-        if ($this->s__modifica) {
+        $modifica = toba::memoria()->get_dato('modifica');
+        if ($modifica) {
             $this->dep('relacion')->sincronizar();
             $this->dep('relacion')->resetear();
         } else {
-           // try {
+            try {
                 $this->dep('relacion')->sincronizar();
                 $this->dep('relacion')->resetear();
                 $this->dep('relacion_toba')->sincronizar();
                 $this->dep('relacion_toba')->resetear();
-          // } catch (toba_error $e) {
-           //     $this->informar_msg('Error al guardar datos del usuario - '. $e->get_mensaje());
-          //      return;
-           // }  
+           } catch (toba_error $e) {
+                $this->informar_msg('Error al guardar datos del usuario - '. $e->get_mensaje());
+                return;
+           }  
         }    
 
         $this->set_pantalla('seleccion');

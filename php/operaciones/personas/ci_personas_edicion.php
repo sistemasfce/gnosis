@@ -2,6 +2,7 @@
 class ci_personas_edicion extends gnosis_ci
 {
     protected $s__claveAnterior;
+    protected $s__modifica;
         
     function ini()
     {
@@ -71,6 +72,9 @@ class ci_personas_edicion extends gnosis_ci
             $datosPro['usuario_grupo_acc'] = 'usuario';
             $this->tablaToba('basica')->set($datosUser);
             $this->tablaToba('proyecto')->nueva_fila($datosPro);
+            toba::memoria()->set_dato('modifica',false);
+        } else {
+            toba::memoria()->set_dato('modifica',true);
         } 
     }   
     
