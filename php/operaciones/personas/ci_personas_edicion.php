@@ -2,7 +2,6 @@
 class ci_personas_edicion extends gnosis_ci
 {
     protected $s__claveAnterior;
-    protected $s__modifica;
         
     function ini()
     {
