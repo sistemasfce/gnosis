@@ -2535,9 +2535,9 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'280002295', --objeto_ei_formulario_fila
 	'280000903', --objeto_ei_formulario
 	'gnosis', --objeto_ei_formulario_proyecto
-	'ins_estados', --identificador
+	'ins_estado', --identificador
 	'ef_combo', --elemento_formulario
-	'ins_estados', --columnas
+	'ins_estado', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
 	'18', --orden
