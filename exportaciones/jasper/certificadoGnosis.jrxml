@@ -19,7 +19,7 @@
 	<parameter name="firma3" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="firma4" class="java.lang.String" isForPrompting="false"/>
 	<queryString>
-		<![CDATA[SELECT certificado FROM gnosis.evt_certificados]]>
+		<![CDATA[SELECT certificado  FROM gnosis.evt_certificados LIMIT 1]]>
 	</queryString>
 	<field name="certificado" class="java.lang.Integer"/>
 	<background>
