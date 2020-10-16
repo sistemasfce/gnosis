@@ -1016,7 +1016,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'280001150', --objeto_ei_formulario
 	'gnosis', --objeto_ei_formulario_proyecto
 	'descripcion', --identificador
-	'ef_fijo', --elemento_formulario
+	'ef_editable_textarea', --elemento_formulario
 	'descripcion', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
@@ -1032,7 +1032,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'0', --permitir_html
 	'0', --deshabilitar_rest_func
 	'--', --estado_defecto
-	'0', --solo_lectura
+	'1', --solo_lectura
 	'0', --solo_lectura_modificacion
 	NULL, --carga_metodo
 	NULL, --carga_clase
@@ -1056,7 +1056,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --edit_unidad
 	NULL, --edit_rango
 	'4', --edit_filas
-	'40', --edit_columnas
+	'100', --edit_columnas
 	NULL, --edit_wrap
 	'0', --edit_resaltar
 	'0', --edit_ajustable

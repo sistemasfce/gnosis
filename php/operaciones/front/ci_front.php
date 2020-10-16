@@ -159,10 +159,10 @@ class ci_front extends gnosis_ci
         $persona = toba::memoria()->get_dato('persona'); 
         $evento = toba::memoria()->get_dato('evento_seleccionado');
         $datos = toba::consulta_php('co_eventos')->get_eventos_info($evento);
-        $datos['fecha_inicio'] = $this->cambiarFormatoFecha($datos['fecha_inicio']);
-        $datos['fecha_fin'] = $this->cambiarFormatoFecha($datos['fecha_fin']);
-        $datos['fecha_inicio_ins'] = $this->cambiarFormatoFecha($datos['fecha_inicio_ins']);
-        $datos['fecha_fin_ins'] = $this->cambiarFormatoFecha($datos['fecha_fin_ins']);
+        $datos['fecha_inicio'] = $this->cambiarFormatoFechaHora($datos['fecha_inicio']);
+        $datos['fecha_fin'] = $this->cambiarFormatoFechaHora($datos['fecha_fin']);
+        $datos['fecha_inicio_ins'] = $this->cambiarFormatoFechaHora($datos['fecha_inicio_ins']);
+        $datos['fecha_fin_ins'] = $this->cambiarFormatoFechaHora($datos['fecha_fin_ins']);
         
         $disertantes = toba::consulta_php('co_eventos')->get_disertantes_evento($evento);
         $nombres = "";
@@ -347,7 +347,13 @@ class ci_front extends gnosis_ci
     function cambiarFormatoFecha($fecha){
         list($anio,$mes,$dia)=explode("-",$fecha);
         return $dia."-".$mes."-".$anio;
-    }   
+    }  
+    
+    function cambiarFormatoFechaHora($valor){
+        list($fecha, $hora)=explode(" ",$valor);
+        list($anio,$mes,$dia)=explode("-",$fecha);
+        return $dia."-".$mes."-".$anio. " ".$hora;
+    }      
     
     function reemplaza($palabra,$cadena,$reemplazo)
     {

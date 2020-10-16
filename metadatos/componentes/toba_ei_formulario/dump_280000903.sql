@@ -696,7 +696,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'280000903', --objeto_ei_formulario
 	'gnosis', --objeto_ei_formulario_proyecto
 	'fecha_inicio', --identificador
-	'ef_editable_fecha', --elemento_formulario
+	'ef_editable_fecha_hora', --elemento_formulario
 	'fecha_inicio', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
@@ -776,7 +776,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'280000903', --objeto_ei_formulario
 	'gnosis', --objeto_ei_formulario_proyecto
 	'fecha_fin', --identificador
-	'ef_editable_fecha', --elemento_formulario
+	'ef_editable_fecha_hora', --elemento_formulario
 	'fecha_fin', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio

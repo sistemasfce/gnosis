@@ -21,15 +21,15 @@ require_once(toba::proyecto()->get_path_php().'/comunes.php');
         UPDATE evt_eventos
         set estado = $evt_en_curso
         WHERE estado = $evn_en_insc
-            AND current_date >= fecha_inicio::date
+            AND current_timestamp >= fecha_inicio
         ";
-    $datos = toba::db()->consultar($sql);    
+    //$datos = toba::db()->consultar($sql);    
     
     // si el evento esta en curso y termina pasa a finalizado
     $sql = "
         UPDATE evt_eventos
         set estado = $evt_finalizado
         WHERE estado = $evt_en_curso
-            AND current_date > fecha_fin::date 
+            AND current_timestamp >= fecha_fin
         ";
-    $datos = toba::db()->consultar($sql);    
+    //$datos = toba::db()->consultar($sql);    

@@ -32,6 +32,16 @@ class ci_eventos_edicion extends gnosis_ci
                 $fecha[1] = date('H:i',strtotime($datos['ins_fecha_fin'])); 
                 $datos['ins_fecha_fin'] = $fecha;               
             }
+            if (isset($datos['fecha_inicio'])) {
+                $fecha[0] = date('Y-m-d',strtotime($datos['fecha_inicio']));
+                $fecha[1] = date('H:i',strtotime($datos['fecha_inicio'])); 
+                $datos['fecha_inicio'] = $fecha;                
+            }
+            if (isset($datos['fecha_fin'])) {
+                $fecha[0] = date('Y-m-d',strtotime($datos['fecha_fin']));
+                $fecha[1] = date('H:i',strtotime($datos['fecha_fin'])); 
+                $datos['fecha_fin'] = $fecha;               
+            }            
             // si esta cargada la resolucion armo el link para descarga
             if ($datos['resolucion_path'] != '') {
                 $long = strlen('/home/fce/informes_gn/');
@@ -83,6 +93,12 @@ class ci_eventos_edicion extends gnosis_ci
         if (isset($datos['ins_fecha_inicio'])) {
             $datos['ins_fecha_inicio'] = "{$datos['ins_fecha_inicio'][0]} {$datos['ins_fecha_inicio'][1]}";
         }
+        if (isset($datos['fecha_fin'])) {
+            $datos['fecha_fin'] = "{$datos['fecha_fin'][0]} {$datos['fecha_fin'][1]}";
+        }
+        if (isset($datos['fecha_inicio'])) {
+            $datos['fecha_inicio'] = "{$datos['fecha_inicio'][0]} {$datos['fecha_inicio'][1]}";
+        }        
         
         $this->tabla('evt_eventos')->set($datos);
     }

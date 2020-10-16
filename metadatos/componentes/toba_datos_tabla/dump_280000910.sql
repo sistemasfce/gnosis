@@ -186,7 +186,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'280000910', --objeto
 	'280001206', --col_id
 	'fecha_inicio', --columna
-	'F', --tipo
+	'T', --tipo
 	'0', --pk
 	'', --secuencia
 	NULL, --largo
@@ -200,7 +200,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'280000910', --objeto
 	'280001207', --col_id
 	'fecha_fin', --columna
-	'F', --tipo
+	'T', --tipo
 	'0', --pk
 	'', --secuencia
 	NULL, --largo
