@@ -217,8 +217,15 @@ class ci_front extends gnosis_ci
     function conf__cuadro_eventos_as(gnosis_ei_cuadro $cuadro)
     {
         $datos = $this->relacion()->tabla('ins_inscripciones')->get_filas();
-        toba::memoria()->set_dato('evento',$datos);
-        $cuadro->set_datos($datos);
+        $aux = [];
+        foreach ($datos as $dat) {
+            if ($dat['estado'] == 3) {
+                continue;
+            }
+            $aux[] = $dat;
+        }
+        toba::memoria()->set_dato('evento',$aux);
+        $cuadro->set_datos($aux);
     }
 
     //-----------------------------------------------------------------------------------
@@ -232,26 +239,34 @@ class ci_front extends gnosis_ci
     function conf_evt__cuadro_eventos_as__cuestionario(toba_evento_usuario $evento, $fila)
     {
         $datos = toba::memoria()->get_dato('evento');
-        if ($datos[$fila]['debe_cuestionario'] == 'S' and $datos[$fila]['estado'] ==comunes::ins_aceptado and $datos[$fila]['evento_estado'] ==comunes::evt_finalizado) {
+        if ($datos[$fila]['debe_cuestionario'] == 'S' and $datos[$fila]['estado'] == comunes::ins_aceptado and $datos[$fila]['evento_estado'] == comunes::evt_finalizado) {
             $evento->activar(); 
         }
         else {
-            $evento->desactivar();  
+            $evento->desactivar();
         }  
-    }  
+    }
     
     function conf_evt__cuadro_eventos_as__certificado(toba_evento_usuario $evento, $fila)
     {
         $perfil = toba::usuario()->get_perfiles_funcionales();
+        $datos = toba::memoria()->get_dato('evento');        
         if ($perfil[0] == 'admin') {
+            if ($datos[$fila]['certifico_asistencia'] == 'N' and $datos[$fila]['certifico_aprobacion'] == 'N') {
+                $evento->desactivar(); 
+                return;
+            }   
             $evento->activar();  
             return;
         }
-        
-        $datos = toba::memoria()->get_dato('evento');
         if ($datos[$fila]['debe_cuestionario'] == 'S') {
             $evento->desactivar(); 
+            return;
         }
+        if ($datos[$fila]['certifico_asistencia'] == 'N' and $datos[$fila]['certifico_aprobacion'] == 'N') {
+            $evento->desactivar(); 
+            return;
+        }      
         else {
             $evento->activar();  
         }  
