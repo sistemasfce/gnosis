@@ -364,6 +364,12 @@ class ci_front extends gnosis_ci
         return $dia."-".$mes."-".$anio;
     }  
     
+    function cambiarFormatoCertificado($valor){
+        list($fecha, $hora)=explode(" ",$valor);
+        list($anio,$mes,$dia)=explode("-",$fecha);
+        return $dia."-".$mes."-".$anio;
+    }     
+    
     function cambiarFormatoFechaHora($valor){
         list($fecha, $hora)=explode(" ",$valor);
         list($anio,$mes,$dia)=explode("-",$fecha);
@@ -417,8 +423,8 @@ class ci_front extends gnosis_ci
             $cadena = $this->reemplaza('%rol%',$cadena,$datos_tabla[$fila]['rol_desc']);
         }
         $cadena = $this->reemplaza('%evento%',$cadena,$datos_tabla[$fila]['titulo_evento']);
-        $cadena = $this->reemplaza('%fecha_inicio%',$cadena,$this->cambiarFormatoFecha($datos_evento['fecha_inicio']));
-        $cadena = $this->reemplaza('%fecha_fin%',$cadena,$this->cambiarFormatoFecha($datos_evento['fecha_fin']));
+        $cadena = $this->reemplaza('%fecha_inicio%',$cadena,$this->cambiarFormatoCertificado($datos_evento['fecha_inicio']));
+        $cadena = $this->reemplaza('%fecha_fin%',$cadena,$this->cambiarFormatoCertificado($datos_evento['fecha_fin']));
         $cadena = $this->reemplaza('%duracion%',$cadena,$datos_evento['duracion']);
         $cadena = $this->reemplaza('%localidad%',$cadena,$datos_evento['localidad_desc']);
         $cadena = $this->reemplaza('%organizador%',$cadena,$datos_evento['organizador_desc']); 
